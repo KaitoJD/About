@@ -18,63 +18,75 @@ body {
     padding: 0 20px;
 }
 
-/* Navigation */
-.navbar {
+/* Sidebar Navigation */
+.sidebar {
     position: fixed;
     top: 0;
-    width: 100%;
-    background: rgba(255, 255, 255, 0.95);
-    backdrop-filter: blur(10px);
+    left: 0;
+    width: 250px;
+    height: 100vh;
+    background: #1a1a1a;
     z-index: 1000;
-    padding: 1rem 0;
     transition: all 0.3s ease;
+    overflow-y: auto;
 }
 
-.nav-container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 20px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+.sidebar-header {
+    padding: 2rem 1.5rem;
+    border-bottom: 1px solid #333;
 }
 
 .nav-logo {
     font-size: 1.5rem;
     font-weight: 700;
-    color: #4f46e5;
+    color: #fff;
     text-decoration: none;
+    display: block;
+    text-align: center;
 }
 
-.nav-menu {
-    display: flex;
+.sidebar-menu {
     list-style: none;
-    gap: 2rem;
+    padding: 1rem 0;
 }
 
-.nav-link {
+.sidebar-item {
+    margin: 0;
+}
+
+.sidebar-link {
+    display: flex;
+    align-items: center;
+    padding: 1rem 1.5rem;
+    color: #ccc;
     text-decoration: none;
-    color: #333;
-    font-weight: 500;
-    transition: color 0.3s ease;
+    transition: all 0.3s ease;
 }
 
-.nav-link:hover {
-    color: #4f46e5;
-}
-
-.hamburger {
-    display: none;
-    flex-direction: column;
-    cursor: pointer;
-}
-
-.bar {
-    width: 25px;
-    height: 3px;
+.sidebar-link:hover {
     background: #333;
-    margin: 3px 0;
-    transition: 0.3s;
+    color: #fff;
+}
+
+.sidebar-link.active {
+    background: #4f46e5;
+    color: #fff;
+}
+
+.sidebar-link i {
+    margin-right: 1rem;
+    font-size: 1.2rem;
+    width: 20px;
+}
+
+.sidebar-link span {
+    font-weight: 500;
+}
+
+/* Main Content */
+.main-content {
+    margin-left: 250px;
+    min-height: 100vh;
 }
 
 /* Hero Section */
@@ -349,6 +361,36 @@ body {
     color: #3730a3;
 }
 
+.project-note {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    padding: 2rem;
+    border-radius: 15px;
+    margin-top: 2rem;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+}
+
+.project-note h4 {
+    font-size: 1.3rem;
+    margin-bottom: 1rem;
+    color: #ffd700;
+    font-weight: 600;
+}
+
+.project-note p {
+    font-size: 1rem;
+    line-height: 1.7;
+    margin: 0;
+    text-align: left;
+    max-width: none;
+    color: rgba(255, 255, 255, 0.95);
+}
+
+.project-note strong {
+    color: #ffd700;
+    font-weight: 700;
+}
+
 /* Contact Section */
 .contact {
     padding: 100px 0;
@@ -475,25 +517,12 @@ body {
 
 /* Responsive Design */
 @media (max-width: 768px) {
-    .hamburger {
-        display: flex;
+    .sidebar {
+        width: 200px;
     }
     
-    .nav-menu {
-        position: fixed;
-        left: -100%;
-        top: 70px;
-        flex-direction: column;
-        background-color: white;
-        width: 100%;
-        text-align: center;
-        transition: 0.3s;
-        box-shadow: 0 10px 27px rgba(0, 0, 0, 0.05);
-        padding: 2rem 0;
-    }
-    
-    .nav-menu.active {
-        left: 0;
+    .main-content {
+        margin-left: 200px;
     }
     
     .hero-title {
@@ -531,6 +560,16 @@ body {
 }
 
 @media (max-width: 480px) {
+    .sidebar {
+        width: 100%;
+        height: auto;
+        position: relative;
+    }
+    
+    .main-content {
+        margin-left: 0;
+    }
+    
     .hero-content {
         padding: 0 1rem;
     }

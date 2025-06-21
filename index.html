@@ -4,44 +4,54 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>KaitoCore</title>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
 </head>
-<body>
-    <!-- Navigation -->
-    <nav class="navbar">
-        <div class="nav-container">
+<body>    <!-- Sidebar Navigation -->
+    <nav class="sidebar">
+        <div class="sidebar-header">
             <a href="#home" class="nav-logo">KaitoJD</a>
-            <ul class="nav-menu">
-                <li class="nav-item">
-                    <a href="#home" class="nav-link">Home</a>
-                </li>
-                <li class="nav-item">
-                    <a href="#about" class="nav-link">About</a>
-                </li>
-                <li class="nav-item">
-                    <a href="#skills" class="nav-link">Skills</a>
-                </li>
-                <li class="nav-item">
-                    <a href="#projects" class="nav-link">Projects</a>
-                </li>
-                <li class="nav-item">
-                    <a href="#contact" class="nav-link">Contact</a>
-                </li>
-            </ul>
-            <div class="hamburger">
-                <span class="bar"></span>
-                <span class="bar"></span>
-                <span class="bar"></span>
-            </div>
         </div>
+        <ul class="sidebar-menu">
+            <li class="sidebar-item">
+                <a href="#home" class="sidebar-link">
+                    <i class="fas fa-home"></i>
+                    <span>Home</span>
+                </a>
+            </li>
+            <li class="sidebar-item">
+                <a href="#about" class="sidebar-link">
+                    <i class="fas fa-user"></i>
+                    <span>About</span>
+                </a>
+            </li>
+            <li class="sidebar-item">
+                <a href="#skills" class="sidebar-link">
+                    <i class="fas fa-code"></i>
+                    <span>Skills</span>
+                </a>
+            </li>
+            <li class="sidebar-item">
+                <a href="#projects" class="sidebar-link">
+                    <i class="fas fa-project-diagram"></i>
+                    <span>Projects</span>
+                </a>
+            </li>
+            <li class="sidebar-item">
+                <a href="#contact" class="sidebar-link">
+                    <i class="fas fa-envelope"></i>
+                    <span>Contact</span>
+                </a>
+            </li>
+        </ul>
     </nav>
 
-    <!-- Hero Section -->
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Hero Section -->
     <section id="home" class="hero">
         <div class="hero-content">
-            <h1 class="hero-title">This is a simple website</h1>
+            <h1 class="hero-title">Kaito Core</h1>
             <h2 class="hero-subtitle">I'm <span class="highlight">KaitoJD</span></h2>
             <p class="hero-description">Web Developer | Pianist | Tech Enthusiast</p>
         </div>
@@ -57,11 +67,18 @@
                         Hello! I'm KaitoJD, a passionate developer with a love for technology and programming. 
                         I just started learning about web development and I'm always looking for new 
                         challenges to learn and grow.
+                    </p>                    <p>
+                        I have a background in C and Java programming. I'm currently diving into web technologies like HTML, CSS, and JavaScript.
                     </p>
-                    <p>
-                        I have a background in C programming and I'm currently diving into web technologies like HTML, CSS, and JavaScript. 
-                        My goal is to create beautiful and functional web applications that provide great user experiences.
-                    </p>
+                    <div class="project-note">
+                        <h4>About This Project</h4>
+                        <p>
+                            This portfolio website is my submission for the <strong>GitHub x Hack Club | Summer of Making 2025</strong> program. 
+                            It represents my journey into web development and showcases the skills I've been learning. 
+                            Built from scratch using HTML, CSS, and JavaScript, this project demonstrates my passion for 
+                            coding and my commitment to continuous learning in the tech field.
+                        </p>
+                    </div>
                 </div>
             </div>
         </div>
@@ -119,18 +136,18 @@
             <div class="projects-grid">
                 <div class="project-card">
                     <div class="project-content">
-                        <h3>Web Application</h3>
-                        <p>A full-stack web application built with React and Node.js</p>
+                        <h3>Kaito Core</h3>
+                        <p>My personal website</p>
                         <div class="project-tech">
-                            <span class="tech-tag">React</span>
-                            <span class="tech-tag">Node.js</span>
-                            <span class="tech-tag">MongoDB</span>
+                            <span class="tech-tag">HTML</span>
+                            <span class="tech-tag">CSS</span>
+                            <span class="tech-tag">JavaScript</span>
                         </div>
                         <div class="project-links">
-                            <a href="#" class="project-link">
-                                <i class="fab fa-github"></i> GitHub
+                            <a href="https://github.com/KaitoJD/kaitojd.github.io" class="project-link">
+                                <i class="fab fa-github"></i> Source Code
                             </a>
-                            <a href="#" class="project-link">
+                            <a href="https://kaitojd.github.io" class="project-link">
                                 <i class="fas fa-external-link-alt"></i> Live Demo
                             </a>
                         </div>
@@ -188,9 +205,9 @@
                     </a>
                 </div>
             </div>
-        </div>
-    </footer>
+        </div>        </footer>
+    </main>
 
-    <script src="script.js"></script>
+    <script src="js/script.js"></script>
 </body>
 </html>
