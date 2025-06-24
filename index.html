@@ -1,13 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>KaitoCore</title>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
 </head>
-<body>    <!-- Sidebar Navigation -->
+
+<body> <!-- Sidebar Navigation -->
     <nav class="sidebar">
         <div class="sidebar-header">
             <a href="#home" class="nav-logo">KaitoJD</a>
@@ -38,6 +42,12 @@
                 </a>
             </li>
             <li class="sidebar-item">
+                <a href="#tools" class="sidebar-link">
+                    <i class="fas fa-tools"></i>
+                    <span>Tools</span>
+                </a>
+            </li>
+            <li class="sidebar-item">
                 <a href="#contact" class="sidebar-link">
                     <i class="fas fa-envelope"></i>
                     <span>Contact</span>
@@ -49,165 +59,225 @@
     <!-- Main Content -->
     <main class="main-content">
         <!-- Hero Section -->
-    <section id="home" class="hero">
-        <div class="hero-content">
-            <h1 class="hero-title">Kaito Core</h1>
-            <h2 class="hero-subtitle">I'm <span class="highlight">KaitoJD</span></h2>
-            <p class="hero-description">Web Developer | Pianist | Tech Enthusiast</p>
-        </div>
-    </section>
+        <section id="home" class="hero">
+            <div class="hero-content">
+                <h1 class="hero-title">KaitoJD</h1>
+                <h2 class="hero-subtitle">I'm <span class="highlight">KaitoJD</span></h2>
+                <p class="hero-description">Full-Stack Developer | React/Next.js Enthusiast | Tech Creator</p>
 
-    <!-- About Section -->
-    <section id="about" class="about">
-        <div class="container">
-            <h2 class="section-title">About Me</h2>
-            <div class="about-content">
-                <div class="about-text">
-                    <p>
-                        Hello! I'm KaitoJD, a passionate developer with a love for technology and programming. 
-                        I just started learning about web development and I'm always looking for new 
-                        challenges to learn and grow.
-                    </p>                    <p>
-                        I have a background in C and Java programming. I'm currently diving into web technologies like HTML, CSS, and JavaScript.
-                    </p>
-                    <div class="project-note">
-                        <h4>About This Project</h4>
-                        <p>
-                            This portfolio website is my submission for the <strong>GitHub x Hack Club | Summer of Making 2025</strong> program. 
-                            It represents my journey into web development and showcases the skills I've been learning. 
-                            Built from scratch using HTML, CSS, and JavaScript, this project demonstrates my passion for 
-                            coding and my commitment to continuous learning in the tech field.
-                        </p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Skills Section -->
-    <section id="skills" class="skills">
-        <div class="container">
-            <h2 class="section-title">My Skills</h2>
-            <div class="skills-grid">
-                <div class="skill-card">
-                    <div class="skill-icon">
-                        <i class="fab fa-html5"></i>
-                    </div>
-                    <h3>HTML/CSS</h3>
-                    <p>Building responsive and optimized web interfaces</p>
-                </div>
-                <div class="skill-card">
-                    <div class="skill-icon">
-                        <i class="fab fa-js-square"></i>
-                    </div>
-                    <h3>JavaScript</h3>
-                    <p>Developing dynamic and interactive web applications</p>
-                </div>
-                <div class="skill-card">
-                    <div class="skill-icon">
-                        <i class="fab fa-c"></i>
-                    </div>
-                    <h3>C</h3>
-                    <p>Highly efficient and fast, crucial for programming and embedded systems</p>
-                </div>
-                <div class="skill-card">
-                    <div class="skill-icon">
-                        <i class="fab fa-java"></i>
-                    </div>
-                    <h3>Java</h3>
-                    <p>A multi-platform, object-oriented, and network-centric language that can be used as a platform in itself</p>
-                </div>
-        
-                <div class="skill-card">
-                    <div class="skill-icon">
-                        <i class="fab fa-git-alt"></i>
-                    </div>
-                    <h3>Git/GitHub</h3>
-                    <p>Version control and collaborative development</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Projects Section -->
-    <section id="projects" class="projects">
-        <div class="container">
-            <h2 class="section-title">My Projects (not finished)</h2>
-            <div class="projects-grid">
-                <div class="project-card">
-                    <div class="project-content">
-                        <h3>Kaito Core</h3>
-                        <p>My personal website</p>
-                        <div class="project-tech">
-                            <span class="tech-tag">HTML</span>
-                            <span class="tech-tag">CSS</span>
-                            <span class="tech-tag">JavaScript</span>
-                        </div>
-                        <div class="project-links">
-                            <a href="https://github.com/KaitoJD/kaitojd.github.io" class="project-link">
-                                <i class="fab fa-github"></i> Source Code
-                            </a>
-                            <a href="https://kaitojd.github.io" class="project-link">
-                                <i class="fas fa-external-link-alt"></i> Live Demo
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                
-            </div>
-        </div>
-    </section>
-
-    <!-- Contact Section -->
-    <section id="contact" class="contact">
-        <div class="container">
-            <h2 class="section-title">Get In Touch</h2>
-            <div class="contact-content">
-                <div class="contact-info">
-                    <h3>Let's Connect!</h3>
-                    <p>I'm always open to discussing collaboration opportunities, new projects, or just having a chat about technology and development.</p>
-                    
-                    <div class="contact-methods">
-                        <div class="contact-method">
-                            <i class="fas fa-envelope"></i>
-                            <div>
-                                <h4>Email</h4>
-                                <p>contact.nguyensynguyen@gmail.com</p>
-                            </div>
-                        </div>
-                        <div class="contact-method">
-                            <i class="fab fa-github"></i>
-                            <div>
-                                <h4>GitHub</h4>
-                                <p>github.com/KaitoJD</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Footer -->
-    <footer class="footer">
-        <div class="container">
-            <div class="footer-content">
-                <p>&copy; 2025 KaitoJD. All rights reserved.</p>
-                <div class="footer-social">
-                    <a href="https://github.com/KaitoJD" target="_blank">
+                <!-- Thêm social links -->
+                <div class="social-links">
+                    <a href="https://github.com/KaitoJD" class="social-link" target="_blank">
                         <i class="fab fa-github"></i>
                     </a>
-                    <a href="https://www.linkedin.com/in/nguyensynguyen/" target="_blank">
+                    <a href="https://www.linkedin.com/in/nguyensynguyen/" class="social-link" target="_blank">
                         <i class="fab fa-linkedin"></i>
                     </a>
-                    <a href="https://facebook.com/kaito.dev/" target="_blank">
+                    <a href="https://facebook.com/kaito.dev/" class="social-link" target="_blank">
                         <i class="fab fa-facebook"></i>
                     </a>
                 </div>
+
+                <!-- Thêm CTA button đến tools -->
+                <a href="#projects" class="cta-button">View My Tools</a>
             </div>
-        </div>        </footer>
+        </section>
+
+        <!-- About Section -->
+        <section id="about" class="about">
+            <div class="container">
+                <h2 class="section-title">About Me</h2>
+                <div class="about-content">
+                    <div class="about-text">
+                        <p>
+                            Hello! I'm KaitoJD, a passionate developer with a love for technology and programming.
+                            I just started learning about web development and I'm always looking for new
+                            challenges to learn and grow.
+                        </p>
+                        <p>
+                            My journey started with C and Java programming, and now I've evolved into web development
+                            with
+                            HTML, CSS, JavaScript, and modern frameworks.
+                        </p>
+                        <div class="project-note">
+                            <h4>About This Project</h4>
+                            <p>
+                                This portfolio website is my submission for the <strong>GitHub x Hack Club | Summer of
+                                    Making 2025</strong> program.
+                                It represents my journey into web development and showcases the skills I've been
+                                learning.
+                                Built from scratch using HTML, CSS, and JavaScript, this project demonstrates my passion
+                                for
+                                coding and my commitment to continuous learning in the tech field.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Skills Section -->
+        <section id="skills" class="skills">
+            <div class="container">
+                <h2 class="section-title">My Skills</h2>
+                <div class="skills-grid">
+                    <div class="skill-card">
+                        <div class="skill-icon">
+                            <i class="fab fa-c"></i>
+                        </div>
+                        <h3>C</h3>
+                        <p>Highly efficient and fast, crucial for programming and embedded systems</p>
+                    </div>
+                    <div class="skill-card">
+                        <div class="skill-icon">
+                            <i class="fab fa-react"></i>
+                        </div>
+                        <h3>React/Next.js</h3>
+                        <p>Building modern, performant web applications with React and Next.js framework</p>
+                    </div>
+                    <div class="skill-card">
+                        <div class="skill-icon">
+                            <i class="fab fa-js-square"></i>
+                        </div>
+                        <h3>TypeScript/JavaScript</h3>
+                        <p>Developing type-safe, scalable applications with modern JavaScript and TypeScript</p>
+                    </div>
+                    <div class="skill-card">
+                        <div class="skill-icon">
+                            <i class="fab fa-html5"></i>
+                        </div>
+                        <h3>HTML/CSS</h3>
+                        <p>Creating responsive, accessible, and beautiful user interfaces</p>
+                    </div>
+                    <div class="skill-card">
+                        <div class="skill-icon">
+                            <i class="fab fa-java"></i>
+                        </div>
+                        <h3>Java</h3>
+                        <p>Object-oriented programming and backend development with Java</p>
+                    </div>
+                    <div class="skill-card">
+                        <div class="skill-icon">
+                            <i class="fab fa-node-js"></i>
+                        </div>
+                        <h3>Node.js</h3>
+                        <p>Server-side development and API creation with Node.js</p>
+                    </div>
+                    <div class="skill-card">
+                        <div class="skill-icon">
+                            <i class="fab fa-git-alt"></i>
+                        </div>
+                        <h3>Git/GitHub</h3>
+                        <p>Version control, collaboration, and CI/CD with GitHub Actions</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Projects Section -->
+        <section id="projects" class="projects">
+            <div class="container">
+                <h2 class="section-title">My Tools & Projects</h2>
+                <div class="projects-grid">
+                    <!-- Main Portfolio Website -->
+                    <div class="project-card">
+                        <div class="project-content">
+                            <h3>KaitoPage</h3>
+                            <p>Modern website built with Next.js, TypeScript, and Tailwind CSS</p>
+                            <div class="project-tech">
+                                <span class="tech-tag">Next.js</span>
+                                <span class="tech-tag">TypeScript</span>
+                                <span class="tech-tag">Tailwind CSS</span>
+                            </div>
+                            <div class="project-links">
+                                <a href="https://github.com/KaitoJD/KaitoPage" class="project-link" target="_blank">
+                                    <i class="fab fa-github"></i> Source Code
+                                </a>
+                                <a href="https://kaitojd.me" class="project-link" target="_blank">
+                                    <i class="fas fa-external-link-alt"></i> Live Demo
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Productivity Tools (Placeholder cho tools tương lai) -->
+                    <div class="project-card">
+                        <div class="project-content">
+                            <h3>Productivity Tools Suite</h3>
+                            <p>Collection of web-based productivity tools including timers, calculators, and utilities
+                            </p>
+                            <div class="project-tech">
+                                <span class="tech-tag">React</span>
+                                <span class="tech-tag">Next.js</span>
+                                <span class="tech-tag">JavaScript</span>
+                            </div>
+                            <div class="project-links">
+                                <a href="https://github.com/KaitoJD" class="project-link" target="_blank">
+                                    <i class="fab fa-github"></i> Coming Soon
+                                </a>
+                                <a href="#" class="project-link">
+                                    <i class="fas fa-external-link-alt"></i> In Development
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="contact">
+            <div class="container">
+                <h2 class="section-title">Get In Touch</h2>
+                <div class="contact-content">
+                    <div class="contact-info">
+                        <h3>Let's Connect!</h3>
+                        <p>I'm always open to discussing collaboration opportunities, new projects, or just having a
+                            chat about technology and development.</p>
+
+                        <div class="contact-methods">
+                            <div class="contact-method">
+                                <i class="fas fa-envelope"></i>
+                                <div>
+                                    <h4>Email</h4>
+                                    <p>contact.nguyensynguyen@gmail.com</p>
+                                </div>
+                            </div>
+                            <div class="contact-method">
+                                <i class="fab fa-github"></i>
+                                <div>
+                                    <h4>GitHub</h4>
+                                    <p>github.com/KaitoJD</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <div class="container">
+                <div class="footer-content">
+                    <p>&copy; 2025 KaitoJD. All rights reserved.</p>
+                    <div class="footer-social">
+                        <a href="https://github.com/KaitoJD" target="_blank">
+                            <i class="fab fa-github"></i>
+                        </a>
+                        <a href="https://www.linkedin.com/in/nguyensynguyen/" target="_blank">
+                            <i class="fab fa-linkedin"></i>
+                        </a>
+                        <a href="https://facebook.com/kaito.dev/" target="_blank">
+                            <i class="fab fa-facebook"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </footer>
     </main>
 
     <script src="js/script.js"></script>
 </body>
+
 </html>
