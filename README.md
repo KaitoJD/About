@@ -1,2 +1,0 @@
-# KaitoPage
-My personal webpage
