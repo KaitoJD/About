@@ -1,5 +1,8 @@
 import type { NextConfig } from "next";
 
+// Check if we're building for GitHub Pages deployment
+const isGithubPages = process.env.GITHUB_PAGES === 'true';
+
 const nextConfig: NextConfig = {
   // Enable static export for GitHub Pages
   output: 'export',
@@ -9,8 +12,11 @@ const nextConfig: NextConfig = {
     unoptimized: true,
   },
   
-  // Set base path for GitHub Pages (uncomment and modify if your repo isn't at root)
-  // basePath: '/your-repo-name',
+  // Only set basePath and assetPrefix for GitHub Pages deployment
+  ...(isGithubPages && {
+    basePath: '/Portfolio',
+    assetPrefix: '/Portfolio',
+  }),
   
   // Ensure trailing slash is added
   trailingSlash: true,
