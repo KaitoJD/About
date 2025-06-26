@@ -1,36 +1,87 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Portfolio - Nguyen Sy Nguyen
 
-## Getting Started
+A modern, responsive portfolio website built with Next.js 15, React, TypeScript, and TailwindCSS.
 
-First, run the development server:
+## 🚀 Features
+
+- **Modern Design**: Clean, professional layout with interactive tech stack showcase
+- **Responsive**: Works perfectly on desktop, tablet, and mobile devices
+- **Fast Performance**: Optimized for speed with Next.js static export
+- **Type Safe**: Built with TypeScript for better development experience
+- **Accessible**: Following web accessibility best practices
+
+## 🛠️ Tech Stack
+
+- **Frontend**: React, Next.js, TypeScript
+- **Styling**: TailwindCSS
+- **Fonts**: Source Code Pro, JetBrains Mono
+- **Deployment**: GitHub Pages
+- **Build Tools**: Next.js, npm
+
+## 🏃‍♂️ Development
 
 ```bash
+# Install dependencies
+npm install
+
+# Start development server
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+
+# Visit http://localhost:3000
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## 🏗️ Building
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```bash
+# Build for local deployment
+npm run build
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+# Build for GitHub Pages deployment
+npm run build:github
 
-## Learn More
+# The output will be in the `out` directory
+```
 
-To learn more about Next.js, take a look at the following resources:
+## 🚀 Deployment
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+This project is automatically deployed to GitHub Pages when you push to the `main` branch.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+### GitHub Pages Setup
 
-## Deploy on Vercel
+1. Enable GitHub Pages in your repository settings
+2. Set the source to "GitHub Actions"
+3. The workflow will automatically build and deploy your site
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+### Manual Deployment
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+If you want to deploy manually:
+
+```bash
+# Build for GitHub Pages
+npm run build:github
+
+# Deploy the `out` directory to your hosting provider
+```
+
+## 📁 Project Structure
+
+```
+├── src/
+│   ├── app/                 # Next.js App Router pages
+│   ├── components/          # React components
+│   └── ...
+├── public/                  # Static assets
+├── .github/workflows/       # GitHub Actions workflows
+└── ...
+```
+
+## 🎨 Customization
+
+- **Colors**: Edit the color scheme in `src/app/globals.css`
+- **Content**: Update your information in `src/app/page.tsx`
+- **Tech Stack**: Modify the technologies in `src/components/TechStackDynamic.tsx`
+- **Fonts**: Change fonts in `src/app/layout.tsx`
+
+## 📝 License
+
+This project is open source and available under the [MIT License](LICENSE).
