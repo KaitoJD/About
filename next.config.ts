@@ -1,7 +1,7 @@
 import type { NextConfig } from "next";
 
 // Check if we're building for GitHub Pages deployment
-const isGitHubPages = process.env.GITHUB_PAGES === 'true';
+const isGithubPages = process.env.GITHUB_PAGES === 'true';
 
 const nextConfig: NextConfig = {
   // Enable static export for GitHub Pages
@@ -13,10 +13,10 @@ const nextConfig: NextConfig = {
   },
   
   // Only set basePath and assetPrefix for GitHub Pages deployment
-  ...(isGitHubPages ? {
-    basePath: process.env.GITHUB_PAGES_BASE_PATH || "",
-    assetPrefix: process.env.GITHUB_PAGES_BASE_PATH || "",
-  } : {}),
+  ...(isGithubPages && {
+    basePath: '/Portfolio',
+    assetPrefix: '/Portfolio',
+  }),
   
   // Ensure trailing slash is added
   trailingSlash: true,
