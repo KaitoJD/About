@@ -1,7 +1,7 @@
 import type { NextConfig } from "next";
 
 // Check if we're building for GitHub Pages deployment
-const isGithubPages = process.env.GITHUB_PAGES === 'true';
+const isGitHubPages = process.env.GITHUB_PAGES === 'true';
 
 const nextConfig: NextConfig = {
   // Enable static export for GitHub Pages
