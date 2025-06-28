@@ -22,24 +22,35 @@ import {
 
 interface TechItem {
   name: string;
-  icon: React.ReactNode;
+  icon: React.ComponentType<{ className?: string; style?: React.CSSProperties }>;
   color: string;
   category: string;
 }
 
+// Helper component to standardize icon styling
+const TechIcon = ({ 
+  IconComponent, 
+  color 
+}: { 
+  IconComponent: React.ComponentType<{ className?: string; style?: React.CSSProperties }>; 
+  color: string 
+}) => (
+  <IconComponent className="w-8 h-8" style={{ color }} />
+);
+
 const techStack: TechItem[] = [
-  { name: 'React', icon: <FaReact className="w-8 h-8" style={{color: '#61DAFB'}} />, color: '#61DAFB', category: 'Frontend' },
-  { name: 'Next.js', icon: <SiNextdotjs className="w-8 h-8" style={{color: '#000000'}} />, color: '#000000', category: 'Frontend' },
-  { name: 'TypeScript', icon: <SiTypescript className="w-8 h-8" style={{color: '#3178C6'}} />, color: '#3178C6', category: 'Language' },
-  { name: 'JavaScript', icon: <FaJs className="w-8 h-8" style={{color: '#F7DF1E'}} />, color: '#F7DF1E', category: 'Language' },
-  { name: 'Java', icon: <FaJava className="w-8 h-8" style={{color: '#ED8B00'}} />, color: '#ED8B00', category: 'Language' },
-  { name: 'C', icon: <SiC className="w-8 h-8" style={{color: '#A8B9CC'}} />, color: '#A8B9CC', category: 'Language' },
-  { name: 'Node.js', icon: <FaNodeJs className="w-8 h-8" style={{color: '#339933'}} />, color: '#339933', category: 'Backend' },
-  { name: 'Git', icon: <FaGitAlt className="w-8 h-8" style={{color: '#F05032'}} />, color: '#F05032', category: 'Tools' },
-  { name: 'GitHub', icon: <FaGithub className="w-8 h-8" style={{color: '#181717'}} />, color: '#181717', category: 'Tools' },
-  { name: 'HTML', icon: <SiHtml5 className="w-8 h-8" style={{color: '#E34F26'}} />, color: '#E34F26', category: 'Frontend' },
-  { name: 'CSS', icon: <SiCss3 className="w-8 h-8" style={{color: '#1572B6'}} />, color: '#1572B6', category: 'Frontend' },
-  { name: 'TailwindCSS', icon: <SiTailwindcss className="w-8 h-8" style={{color: '#06B6D4'}} />, color: '#06B6D4', category: 'Frontend' },
+  { name: 'React', icon: FaReact, color: '#61DAFB', category: 'Frontend' },
+  { name: 'Next.js', icon: SiNextdotjs, color: '#000000', category: 'Frontend' },
+  { name: 'TypeScript', icon: SiTypescript, color: '#3178C6', category: 'Language' },
+  { name: 'JavaScript', icon: FaJs, color: '#F7DF1E', category: 'Language' },
+  { name: 'Java', icon: FaJava, color: '#ED8B00', category: 'Language' },
+  { name: 'C', icon: SiC, color: '#A8B9CC', category: 'Language' },
+  { name: 'Node.js', icon: FaNodeJs, color: '#339933', category: 'Backend' },
+  { name: 'Git', icon: FaGitAlt, color: '#F05032', category: 'Tools' },
+  { name: 'GitHub', icon: FaGithub, color: '#181717', category: 'Tools' },
+  { name: 'HTML', icon: SiHtml5, color: '#E34F26', category: 'Frontend' },
+  { name: 'CSS', icon: SiCss3, color: '#1572B6', category: 'Frontend' },
+  { name: 'TailwindCSS', icon: SiTailwindcss, color: '#06B6D4', category: 'Frontend' },
 ];
 
 export default function TechStackDynamic() {
@@ -90,7 +101,7 @@ export default function TechStackDynamic() {
           >
             <div className="flex flex-col items-center space-y-3">
               <div className="transition-transform duration-300 group-hover:scale-110">
-                {tech.icon}
+                <TechIcon IconComponent={tech.icon} color={tech.color} />
               </div>
               <span className="text-sm font-medium text-slate-700 dark:text-slate-300 text-center font-mono">
                 {tech.name}
