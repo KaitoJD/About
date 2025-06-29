@@ -14,8 +14,8 @@ const nextConfig: NextConfig = {
   
   // Only set basePath and assetPrefix for GitHub Pages deployment
   ...(isGithubPages && {
-    basePath: '/Portfolio',
-    assetPrefix: '/Portfolio',
+    basePath: '/About',
+    assetPrefix: '/About',
   }),
   
   // Ensure trailing slash is added
