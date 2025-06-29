@@ -13,7 +13,7 @@ const jetBrainsMono = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Portfolio - Nguyen Sy Nguyen",
+  title: "About Me",
   description: "Personal portfolio showcasing my skills, projects and experience in web development",
   keywords: ["portfolio", "developer", "web development", "React", "Next.js", "TypeScript"],
   authors: [{ name: "Nguyen Sy Nguyen" }],
