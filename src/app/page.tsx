@@ -29,9 +29,21 @@ export default function Home() {
       }
     };
 
+    // Close mobile menu when Escape key is pressed
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === 'Escape' && isMobileMenuOpen) {
+        setIsMobileMenuOpen(false);
+      }
+    };
+
     document.addEventListener('mousedown', handleClickOutside);
-    return () => document.removeEventListener('mousedown', handleClickOutside);
-  }, []);
+    document.addEventListener('keydown', handleKeyDown);
+    
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+      document.removeEventListener('keydown', handleKeyDown);
+    };
+  }, [isMobileMenuOpen]);
 
   const handleLoadingComplete = useCallback(() => {
     setIsLoading(false);
@@ -91,6 +103,7 @@ export default function Home() {
                 onClick={toggleMobileMenu}
                 aria-label="Toggle menu"
                 aria-expanded={isMobileMenuOpen}
+                aria-controls="mobile-menu"
               >
                 <svg className="w-6 h-6 text-slate-600 dark:text-slate-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
@@ -99,6 +112,7 @@ export default function Home() {
 
               {/* Mobile Dropdown Menu */}
               <div 
+                id="mobile-menu"
                 ref={mobileMenuRef}
                 className={clsx(
                   'mobile-menu absolute right-0 top-full mt-2 w-48 bg-white dark:bg-slate-800 rounded-lg shadow-lg border border-slate-200 dark:border-slate-700 transition-all duration-200 origin-top-right transform',
