@@ -1,30 +1,46 @@
-# Portfolio - Nguyen Sy Nguyen
+# About Me - Nguyen Sy Nguyen
 
-A modern, responsive portfolio website built with Next.js 15, React, TypeScript, and TailwindCSS.
+A modern, responsive website built with Next.js 15, React, TypeScript, and Tailwind CSS. Features a custom loading screen, interactive mobile menu, and comprehensive accessibility support.
 
-## 🚀 Features
+## ✨ Features
 
-- **Modern Design**: Clean, professional layout with interactive tech stack showcase
-- **Responsive**: Works perfectly on desktop, tablet, and mobile devices
-- **Fast Performance**: Optimized for speed with Next.js static export
-- **Type Safe**: Built with TypeScript for better development experience
-- **Accessible**: Following web accessibility best practices
+- **Modern Design**: Clean, professional layout with gradient backgrounds and smooth animations
+- **Fully Responsive**: Optimized for all devices with mobile-first approach
+- **Interactive UI**: Custom loading screen, mobile dropdown menu, and smooth scrolling
+- **Accessibility**: Full keyboard navigation, ARIA attributes, and screen reader support
+- **Performance Optimized**: Static export with optimized event listeners and React best practices
+- **Tech Stack Showcase**: Dynamic tech icons using React Icons
+- **GitHub Pages Ready**: Configured for seamless deployment
 
 ## 🛠️ Tech Stack
 
-- **Frontend**: React, Next.js, TypeScript
-- **Styling**: TailwindCSS
-- **Fonts**: Source Code Pro, JetBrains Mono
-- **Deployment**: GitHub Pages
-- **Build Tools**: Next.js, npm
+- **Framework**: Next.js 15 with App Router
+- **Language**: TypeScript
+- **Styling**: Tailwind CSS
+- **Icons**: React Icons
+- **State Management**: React Hooks (useState, useRef, useCallback)
+- **Utilities**: clsx for conditional styling
+- **Deployment**: GitHub Pages with GitHub Actions
+- **Font**: JetBrains Mono (monospace)
 
-## 🏃‍♂️ Development
+## 🏃‍♂️ Getting Started
+
+### Prerequisites
+
+- Node.js 18+ 
+- npm or yarn
+
+### Installation & Development
 
 ```bash
+# Clone the repository
+git clone https://github.com/yourusername/About.git
+cd About
+
 # Install dependencies
 npm install
 
-# Start development server
+# Start development server with Turbopack
 npm run dev
 
 # Visit http://localhost:3000
@@ -44,43 +60,86 @@ npm run build:github
 
 ## 🚀 Deployment
 
-This project is automatically deployed to GitHub Pages when you push to the `main` branch.
+This project is automatically deployed to GitHub Pages when you push to the `master` branch.
 
 ### GitHub Pages Setup
 
 1. Enable GitHub Pages in your repository settings
 2. Set the source to "GitHub Actions"
-3. The workflow will automatically build and deploy your site
+3. Push to `master` branch and the workflow will automatically build and deploy
 
 ### Manual Deployment
-
-If you want to deploy manually:
 
 ```bash
 # Build for GitHub Pages
 npm run build:github
 
-# Deploy the `out` directory to your hosting provider
+# The `out` directory contains the static files ready for deployment
 ```
 
 ## 📁 Project Structure
 
 ```
 ├── src/
-│   ├── app/                 # Next.js App Router pages
+│   ├── app/                 # Next.js App Router
+│   │   ├── globals.css      # Global styles and animations
+│   │   ├── layout.tsx       # Root layout component
+│   │   └── page.tsx         # Main portfolio page
 │   ├── components/          # React components
-│   └── ...
-├── public/                  # Static assets
-├── .github/workflows/       # GitHub Actions workflows
-└── ...
+│   │   ├── Loading.tsx      # Custom loading screen
+│   │   └── TechStackDynamic.tsx  # Tech stack with icons
+│   └── styles/
+│       └── loading.css      # Loading screen animations
+├── public/                  # Static assets (SVG icons)
+├── .github/workflows/       # GitHub Actions for deployment
+│   └── nextjs.yml          # CI/CD workflow
+├── next.config.ts          # Next.js configuration
+├── tailwind.config.ts      # Tailwind CSS configuration
+└── tsconfig.json           # TypeScript configuration
 ```
 
-## 🎨 Customization
+## 🎨 Key Components
 
-- **Colors**: Edit the color scheme in `src/app/globals.css`
-- **Content**: Update your information in `src/app/page.tsx`
-- **Tech Stack**: Modify the technologies in `src/components/TechStackDynamic.tsx`
-- **Fonts**: Change fonts in `src/app/layout.tsx`
+### Loading Screen
+- Custom animated progress bar
+- Accessibility features with ARIA attributes
+- Configurable timing and progress logic
+
+### Mobile Menu
+- Responsive dropdown with smooth animations
+- Keyboard accessibility (Escape key support)
+- Click-outside-to-close functionality
+
+### Tech Stack
+- Dynamic icons using React Icons
+- DRY component architecture
+- Responsive grid layout
+
+## 🔧 Customization
+
+### Content
+- **Personal Info**: Update details in `src/app/page.tsx`
+- **Tech Stack**: Modify technologies in `src/components/TechStackDynamic.tsx`
+- **Projects**: Add your projects in the Projects section
+- **Contact Info**: Update contact details and social links
+
+### Styling
+- **Colors**: Edit theme colors in `tailwind.config.ts`
+- **Animations**: Customize in `src/app/globals.css`
+- **Loading Screen**: Configure timing in `src/components/Loading.tsx`
+
+### Configuration
+- **GitHub Pages**: Adjust `basePath` in `next.config.ts` for your repo name
+- **Deployment**: Modify `.github/workflows/nextjs.yml` if needed
+
+## 🌟 Features Highlights
+
+- **Performance**: Optimized event listeners with proper cleanup
+- **Accessibility**: Full keyboard navigation and screen reader support
+- **Responsive**: Mobile-first design with Tailwind CSS
+- **Modern React**: Uses hooks, refs, and functional components
+- **Type Safety**: Full TypeScript coverage
+- **CI/CD**: Automated deployment with GitHub Actions
 
 ## 📝 License
 
