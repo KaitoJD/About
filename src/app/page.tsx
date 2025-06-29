@@ -2,7 +2,8 @@
 
 import TechStackDynamic from '../components/TechStackDynamic';
 import Loading from '../components/Loading';
-import { useEffect, useState, useRef } from 'react';
+import { useEffect, useState, useRef, useCallback } from 'react';
+import clsx from 'clsx';
 import '../styles/loading.css';
 
 export default function Home() {
@@ -32,17 +33,17 @@ export default function Home() {
     return () => document.removeEventListener('mousedown', handleClickOutside);
   }, []);
 
-  const handleLoadingComplete = () => {
+  const handleLoadingComplete = useCallback(() => {
     setIsLoading(false);
-  };
+  }, []);
 
-  const toggleMobileMenu = () => {
+  const toggleMobileMenu = useCallback(() => {
     setIsMobileMenuOpen(!isMobileMenuOpen);
-  };
+  }, [isMobileMenuOpen]);
 
-  const closeMobileMenu = () => {
+  const closeMobileMenu = useCallback(() => {
     setIsMobileMenuOpen(false);
-  };
+  }, []);
 
   // Don't render anything until mounted on client-side
   if (!isMounted) {
@@ -99,11 +100,13 @@ export default function Home() {
               {/* Mobile Dropdown Menu */}
               <div 
                 ref={mobileMenuRef}
-                className={`mobile-menu absolute right-0 top-full mt-2 w-48 bg-white dark:bg-slate-800 rounded-lg shadow-lg border border-slate-200 dark:border-slate-700 transition-all duration-200 origin-top-right transform ${
-                  isMobileMenuOpen 
-                    ? 'opacity-100 visible scale-100' 
-                    : 'opacity-0 invisible scale-95'
-                }`}
+                className={clsx(
+                  'mobile-menu absolute right-0 top-full mt-2 w-48 bg-white dark:bg-slate-800 rounded-lg shadow-lg border border-slate-200 dark:border-slate-700 transition-all duration-200 origin-top-right transform',
+                  {
+                    'opacity-100 visible scale-100': isMobileMenuOpen,
+                    'opacity-0 invisible scale-95': !isMobileMenuOpen,
+                  }
+                )}
               >
                 <div className="py-2">
                   <a 
