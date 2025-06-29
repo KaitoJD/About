@@ -12,6 +12,12 @@ export default function Home() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const mobileMenuRef = useRef<HTMLDivElement>(null);
   const mobileMenuButtonRef = useRef<HTMLButtonElement>(null);
+  const isMobileMenuOpenRef = useRef(false);
+
+  // Keep ref in sync with state
+  useEffect(() => {
+    isMobileMenuOpenRef.current = isMobileMenuOpen;
+  }, [isMobileMenuOpen]);
 
   useEffect(() => {
     // Ensure component is mounted on client-side
@@ -20,6 +26,7 @@ export default function Home() {
     // Close mobile menu when clicking outside
     const handleClickOutside = (event: MouseEvent) => {
       if (
+        isMobileMenuOpenRef.current &&
         mobileMenuRef.current &&
         mobileMenuButtonRef.current &&
         !mobileMenuRef.current.contains(event.target as Node) &&
@@ -31,7 +38,7 @@ export default function Home() {
 
     // Close mobile menu when Escape key is pressed
     const handleKeyDown = (event: KeyboardEvent) => {
-      if (event.key === 'Escape' && isMobileMenuOpen) {
+      if (event.key === 'Escape' && isMobileMenuOpenRef.current) {
         setIsMobileMenuOpen(false);
       }
     };
@@ -43,7 +50,7 @@ export default function Home() {
       document.removeEventListener('mousedown', handleClickOutside);
       document.removeEventListener('keydown', handleKeyDown);
     };
-  }, [isMobileMenuOpen]);
+  }, []);
 
   const handleLoadingComplete = useCallback(() => {
     setIsLoading(false);
