@@ -49,7 +49,7 @@ export default function Loading({ onComplete }: LoadingProps) {
         </div>
 
         {/* Progress Bar */}
-        <div className="mb-6">
+        <div className="mb-6" aria-live="polite" aria-atomic="true">
           <div 
             className="w-full bg-slate-200 dark:bg-slate-700 rounded-full h-3 mb-3"
             role="progressbar"
@@ -66,6 +66,11 @@ export default function Loading({ onComplete }: LoadingProps) {
           <p className="text-slate-600 dark:text-slate-400 text-sm font-mono">
             <span className="text-emerald-600 dark:text-emerald-400">&gt;&gt;</span> {showDone ? 'Done' : `${Math.round(progress)}% complete`}
           </p>
+          
+          {/* Visually hidden region for screen readers */}
+          <div className="sr-only" aria-live="assertive" aria-atomic="true">
+            {showDone ? 'Loading complete' : `Loading progress: ${Math.round(progress)} percent complete`}
+          </div>
         </div>
 
         {/* Loading Dots Animation */}
