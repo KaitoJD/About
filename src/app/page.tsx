@@ -38,8 +38,8 @@ export default function Home() {
   }, []);
 
   const toggleMobileMenu = useCallback(() => {
-    setIsMobileMenuOpen(!isMobileMenuOpen);
-  }, [isMobileMenuOpen]);
+    setIsMobileMenuOpen(prev => !prev);
+  }, []);
 
   const closeMobileMenu = useCallback(() => {
     setIsMobileMenuOpen(false);

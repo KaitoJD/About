@@ -32,7 +32,7 @@ export default function Loading({ onComplete }: LoadingProps) {
 
     return () => {
       clearInterval(progressTimer);
-      if (timeoutId) {
+      if (timeoutId !== null) {
         clearTimeout(timeoutId);
       }
     };
@@ -49,7 +49,7 @@ export default function Loading({ onComplete }: LoadingProps) {
         </div>
 
         {/* Progress Bar */}
-        <div className="mb-6" aria-live="polite" aria-atomic="true">
+        <div className="mb-6">
           <div 
             className="w-full bg-slate-200 dark:bg-slate-700 rounded-full h-3 mb-3"
             role="progressbar"
