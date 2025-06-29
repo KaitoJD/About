@@ -83,7 +83,7 @@ export default function Home() {
             <div className="text-sm sm:text-base md:text-lg lg:text-xl font-medium text-slate-900 dark:text-white font-mono">
               <span className="text-emerald-600 dark:text-emerald-400">&gt;&gt;</span>
               <span className="hidden sm:inline">{" "}welcome to my digital space</span>
-              <span className="sm:hidden">{" "}NSN</span>
+              <span className="sm:hidden">{" "}my digital space</span>
             </div>
 
             {/* Desktop Menu */}
@@ -536,7 +536,7 @@ export default function Home() {
       <footer className="bg-slate-900 text-white py-8 px-4 sm:px-6 lg:px-8">
         <div className="max-w-6xl mx-auto text-center">
           <p className="text-slate-400">
-            © 2024 Nguyen Sy Nguyen. Built with Next.js and Tailwind CSS.
+            © {new Date().getFullYear()} Nguyen Sy Nguyen. Built with Next.js and Tailwind CSS.
           </p>
         </div>
       </footer>

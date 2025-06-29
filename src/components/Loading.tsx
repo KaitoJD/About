@@ -6,6 +6,30 @@ interface LoadingProps {
   onComplete: () => void;
 }
 
+// Loading configuration constants
+const LOADING_CONFIG = {
+  PROGRESS_INTERVAL: 200,
+  DONE_DISPLAY_DURATION: 1000,
+  FAST_PROGRESS_THRESHOLD: 70,
+  FAST_PROGRESS_MIN: 2,
+  FAST_PROGRESS_MAX: 10,
+  SLOW_PROGRESS_MIN: 0.5,
+  SLOW_PROGRESS_MAX: 2.5,
+} as const;
+
+// Calculate progress increment based on current progress
+const calculateProgressIncrement = (currentProgress: number): number => {
+  const isFastPhase = currentProgress < LOADING_CONFIG.FAST_PROGRESS_THRESHOLD;
+  
+  if (isFastPhase) {
+    const range = LOADING_CONFIG.FAST_PROGRESS_MAX - LOADING_CONFIG.FAST_PROGRESS_MIN;
+    return Math.random() * range + LOADING_CONFIG.FAST_PROGRESS_MIN;
+  } else {
+    const range = LOADING_CONFIG.SLOW_PROGRESS_MAX - LOADING_CONFIG.SLOW_PROGRESS_MIN;
+    return Math.random() * range + LOADING_CONFIG.SLOW_PROGRESS_MIN;
+  }
+};
+
 export default function Loading({ onComplete }: LoadingProps) {
   const [progress, setProgress] = useState(0);
   const [showDone, setShowDone] = useState(false);
@@ -21,14 +45,14 @@ export default function Loading({ onComplete }: LoadingProps) {
           setShowDone(true);
           timeoutId = setTimeout(() => {
             onComplete();
-          }, 1000);
+          }, LOADING_CONFIG.DONE_DISPLAY_DURATION);
           return 100;
         }
-        // Faster progress in the beginning, slower at the end
-        const increment = prev < 70 ? Math.random() * 8 + 2 : Math.random() * 2 + 0.5;
+        
+        const increment = calculateProgressIncrement(prev);
         return Math.min(prev + increment, 100);
       });
-    }, 200);
+    }, LOADING_CONFIG.PROGRESS_INTERVAL);
 
     return () => {
       clearInterval(progressTimer);
