@@ -68,7 +68,7 @@ export default function Loading({ onComplete }: LoadingProps) {
           </p>
           
           {/* Visually hidden region for screen readers */}
-          <div className="sr-only" aria-live="assertive" aria-atomic="true">
+          <div className="sr-only" aria-live="polite" aria-atomic="true">
             {showDone ? 'Loading complete' : `Loading progress: ${Math.round(progress)} percent complete`}
           </div>
         </div>
