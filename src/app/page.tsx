@@ -2,12 +2,15 @@
 
 import TechStackDynamic from '../components/TechStackDynamic';
 import Loading from '../components/Loading';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef } from 'react';
 import '../styles/loading.css';
 
 export default function Home() {
   const [isLoading, setIsLoading] = useState(true);
   const [isMounted, setIsMounted] = useState(false);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const mobileMenuRef = useRef<HTMLDivElement>(null);
+  const mobileMenuButtonRef = useRef<HTMLButtonElement>(null);
 
   useEffect(() => {
     // Ensure component is mounted on client-side
@@ -15,12 +18,13 @@ export default function Home() {
     
     // Close mobile menu when clicking outside
     const handleClickOutside = (event: MouseEvent) => {
-      const menu = document.querySelector('.mobile-menu');
-      const button = document.querySelector('.mobile-menu-button');
-      
-      if (menu && button && !menu.contains(event.target as Node) && !button.contains(event.target as Node)) {
-        menu.classList.add('opacity-0', 'invisible', 'scale-95');
-        menu.classList.remove('scale-100');
+      if (
+        mobileMenuRef.current &&
+        mobileMenuButtonRef.current &&
+        !mobileMenuRef.current.contains(event.target as Node) &&
+        !mobileMenuButtonRef.current.contains(event.target as Node)
+      ) {
+        setIsMobileMenuOpen(false);
       }
     };
 
@@ -30,6 +34,14 @@ export default function Home() {
 
   const handleLoadingComplete = () => {
     setIsLoading(false);
+  };
+
+  const toggleMobileMenu = () => {
+    setIsMobileMenuOpen(!isMobileMenuOpen);
+  };
+
+  const closeMobileMenu = () => {
+    setIsMobileMenuOpen(false);
   };
 
   // Don't render anything until mounted on client-side
@@ -73,17 +85,11 @@ export default function Home() {
             {/* Mobile Menu Button */}
             <div className="md:hidden relative">
               <button 
+                ref={mobileMenuButtonRef}
                 className="mobile-menu-button p-2 rounded-lg hover:bg-emerald-50 dark:hover:bg-emerald-900/20 transition-colors"
-                onClick={() => {
-                  const menu = document.querySelector('.mobile-menu');
-                  if (menu) {
-                    menu.classList.toggle('opacity-0');
-                    menu.classList.toggle('invisible');
-                    menu.classList.toggle('scale-95');
-                    menu.classList.toggle('scale-100');
-                  }
-                }}
+                onClick={toggleMobileMenu}
                 aria-label="Toggle menu"
+                aria-expanded={isMobileMenuOpen}
               >
                 <svg className="w-6 h-6 text-slate-600 dark:text-slate-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
@@ -91,57 +97,40 @@ export default function Home() {
               </button>
 
               {/* Mobile Dropdown Menu */}
-              <div className="mobile-menu absolute right-0 top-full mt-2 w-48 bg-white dark:bg-slate-800 rounded-lg shadow-lg border border-slate-200 dark:border-slate-700 opacity-0 invisible transform scale-95 transition-all duration-200 origin-top-right">
+              <div 
+                ref={mobileMenuRef}
+                className={`mobile-menu absolute right-0 top-full mt-2 w-48 bg-white dark:bg-slate-800 rounded-lg shadow-lg border border-slate-200 dark:border-slate-700 transition-all duration-200 origin-top-right transform ${
+                  isMobileMenuOpen 
+                    ? 'opacity-100 visible scale-100' 
+                    : 'opacity-0 invisible scale-95'
+                }`}
+              >
                 <div className="py-2">
                   <a 
                     href="#about" 
                     className="block px-4 py-3 text-slate-600 dark:text-slate-300 hover:text-emerald-600 dark:hover:text-emerald-400 hover:bg-emerald-50 dark:hover:bg-emerald-900/20 transition-colors"
-                    onClick={() => {
-                      const menu = document.querySelector('.mobile-menu');
-                      if (menu) {
-                        menu.classList.add('opacity-0', 'invisible', 'scale-95');
-                        menu.classList.remove('scale-100');
-                      }
-                    }}
+                    onClick={closeMobileMenu}
                   >
                     About
                   </a>
                   <a 
                     href="#skills" 
                     className="block px-4 py-3 text-slate-600 dark:text-slate-300 hover:text-emerald-600 dark:hover:text-emerald-400 hover:bg-emerald-50 dark:hover:bg-emerald-900/20 transition-colors"
-                    onClick={() => {
-                      const menu = document.querySelector('.mobile-menu');
-                      if (menu) {
-                        menu.classList.add('opacity-0', 'invisible', 'scale-95');
-                        menu.classList.remove('scale-100');
-                      }
-                    }}
+                    onClick={closeMobileMenu}
                   >
                     Skills
                   </a>
                   <a 
                     href="#projects" 
                     className="block px-4 py-3 text-slate-600 dark:text-slate-300 hover:text-emerald-600 dark:hover:text-emerald-400 hover:bg-emerald-50 dark:hover:bg-emerald-900/20 transition-colors"
-                    onClick={() => {
-                      const menu = document.querySelector('.mobile-menu');
-                      if (menu) {
-                        menu.classList.add('opacity-0', 'invisible', 'scale-95');
-                        menu.classList.remove('scale-100');
-                      }
-                    }}
+                    onClick={closeMobileMenu}
                   >
                     Projects
                   </a>
                   <a 
                     href="#contact" 
                     className="block px-4 py-3 text-slate-600 dark:text-slate-300 hover:text-emerald-600 dark:hover:text-emerald-400 hover:bg-emerald-50 dark:hover:bg-emerald-900/20 transition-colors"
-                    onClick={() => {
-                      const menu = document.querySelector('.mobile-menu');
-                      if (menu) {
-                        menu.classList.add('opacity-0', 'invisible', 'scale-95');
-                        menu.classList.remove('scale-100');
-                      }
-                    }}
+                    onClick={closeMobileMenu}
                   >
                     Contact
                   </a>
