@@ -12,13 +12,14 @@ export default function Loading({ onComplete }: LoadingProps) {
 
   useEffect(() => {
     // Progress simulation
+    let timeoutId: ReturnType<typeof setTimeout> | null = null;
     const progressTimer = setInterval(() => {
       setProgress(prev => {
         if (prev >= 100) {
           clearInterval(progressTimer);
           // Show "Done" for a moment before completing
           setShowDone(true);
-          setTimeout(() => {
+          timeoutId = setTimeout(() => {
             onComplete();
           }, 1000);
           return 100;
@@ -29,7 +30,12 @@ export default function Loading({ onComplete }: LoadingProps) {
       });
     }, 200);
 
-    return () => clearInterval(progressTimer);
+    return () => {
+      clearInterval(progressTimer);
+      if (timeoutId) {
+        clearTimeout(timeoutId);
+      }
+    };
   }, [onComplete]);
 
   return (
@@ -44,7 +50,14 @@ export default function Loading({ onComplete }: LoadingProps) {
 
         {/* Progress Bar */}
         <div className="mb-6">
-          <div className="w-full bg-slate-200 dark:bg-slate-700 rounded-full h-3 mb-3">
+          <div 
+            className="w-full bg-slate-200 dark:bg-slate-700 rounded-full h-3 mb-3"
+            role="progressbar"
+            aria-valuemin={0}
+            aria-valuemax={100}
+            aria-valuenow={Math.round(progress)}
+            aria-label="Loading progress"
+          >
             <div 
               className="bg-gradient-to-r from-emerald-500 to-emerald-600 h-3 rounded-full transition-all duration-300 ease-out"
               style={{ width: `${progress}%` }}
