@@ -296,7 +296,7 @@ export default function Home() {
             </span>
             {/* Progress bar */}
             <div className="absolute bottom-0 left-0 h-1 bg-emerald-400 rounded-b-lg transition-all duration-[2500ms] ease-linear"
-                 style={{ width: isNotificationVisible ? '100%' : '0%' }}>
+                 style={{ width: showCopyNotification ? '100%' : '0%' }}>
             </div>
           </div>
         </div>
