@@ -26,6 +26,22 @@ export default function Home() {
   const mobileMenuRef = useRef<HTMLDivElement>(null);
   const mobileMenuButtonRef = useRef<HTMLButtonElement>(null);
   const isMobileMenuOpenRef = useRef(false);
+  
+  // Refs to store timeout IDs for cleanup
+  const timeoutRefs = useRef<NodeJS.Timeout[]>([]);
+
+  // Helper function to manage timeouts with cleanup
+  const managedSetTimeout = useCallback((callback: () => void, delay: number): NodeJS.Timeout => {
+    const timeoutId = setTimeout(callback, delay);
+    timeoutRefs.current.push(timeoutId);
+    return timeoutId;
+  }, []);
+
+  // Cleanup function to clear all timeouts
+  const clearAllTimeouts = useCallback(() => {
+    timeoutRefs.current.forEach(timeoutId => clearTimeout(timeoutId));
+    timeoutRefs.current = [];
+  }, []);
 
   // Text to type
   const fullText = "Hi! I'm Nguyen Sy Nguyen";
@@ -72,10 +88,10 @@ export default function Home() {
   const handleLoadingComplete = useCallback(() => {
     setIsLoading(false);
     // Start animation sequence after loading
-    setTimeout(() => {
+    managedSetTimeout(() => {
       setShowTyping(true);
     }, 500); // Small delay to show background first
-  }, []);
+  }, [managedSetTimeout]);
 
   // Animation sequence effect
   useEffect(() => {
@@ -88,11 +104,11 @@ export default function Home() {
       if (currentIndex <= fullText.length) {
         setTypedText(fullText.slice(0, currentIndex));
         currentIndex++;
-        setTimeout(typeTitle, 80); // Typing speed
+        managedSetTimeout(typeTitle, 80); // Typing speed
       } else {
         // Title completed, pause then start description
         setIsTypingTitle(false);
-        setTimeout(() => {
+        managedSetTimeout(() => {
           setIsTypingDescription(true);
           currentIndex = 0; // Reset for description
           typeDescription();
@@ -105,49 +121,56 @@ export default function Home() {
       if (currentIndex <= descriptionText.length) {
         setTypedDescription(descriptionText.slice(0, currentIndex));
         currentIndex++;
-        setTimeout(typeDescription, 50); // Slightly faster for description
+        managedSetTimeout(typeDescription, 50); // Slightly faster for description
       } else {
         // Description completed
         setIsTypingDescription(false);
-        setTimeout(() => {
+        managedSetTimeout(() => {
           setShowCursor(false); // Hide cursor
         }, 500);
         // Show buttons after a delay
-        setTimeout(() => {
+        managedSetTimeout(() => {
           setShowButtons(true);
         }, 1000);
       }
     };
 
     typeTitle();
-  }, [showTyping, fullText, descriptionText]);
+  }, [showTyping, fullText, descriptionText, managedSetTimeout]);
 
   // Show header after buttons
   useEffect(() => {
     if (showButtons) {
-      setTimeout(() => {
+      managedSetTimeout(() => {
         setShowHeader(true);
       }, 1000);
     }
-  }, [showButtons]);
+  }, [showButtons, managedSetTimeout]);
 
   // Show back button after header
   useEffect(() => {
     if (showHeader) {
-      setTimeout(() => {
+      managedSetTimeout(() => {
         setShowBackButton(true);
       }, 500);
     }
-  }, [showHeader]);
+  }, [showHeader, managedSetTimeout]);
 
   // Mark animations as complete after back button appears
   useEffect(() => {
     if (showBackButton) {
-      setTimeout(() => {
+      managedSetTimeout(() => {
         setIsAnimationsComplete(true);
       }, 500); // Allow time for back button animation to settle
     }
-  }, [showBackButton]);
+  }, [showBackButton, managedSetTimeout]);
+
+  // Cleanup all timeouts on component unmount
+  useEffect(() => {
+    return () => {
+      clearAllTimeouts();
+    };
+  }, [clearAllTimeouts]);
 
   // Block interactions until animations are complete
   useEffect(() => {
