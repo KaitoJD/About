@@ -410,10 +410,10 @@ export default function Home() {
               }
             )}>
               <a
-                href="#contact"
+                href="#timeline"
                 className="bg-emerald-600 hover:bg-emerald-700 text-white px-6 sm:px-8 py-3 sm:py-4 rounded-lg font-medium transition-all duration-300 text-center inline-flex items-center justify-center group font-mono text-sm sm:text-base button-hover-effect"
               >
-                <span>Get in Touch</span>
+                <span>View My Journey</span>
                 <svg className="w-4 h-4 sm:w-5 sm:h-5 ml-2 transform group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
                 </svg>
@@ -480,7 +480,7 @@ export default function Home() {
             </h2>
             <div className="w-16 sm:w-20 h-1 bg-emerald-600 mx-auto mb-6 sm:mb-8"></div>
             <p className="text-base sm:text-lg lg:text-xl text-slate-600 dark:text-slate-300 max-w-3xl mx-auto">
-              A timeline of my achievements, experiences, and milestones in software development.
+              A timeline of my achievements, experiences, and milestones.
             </p>
           </div>
 
