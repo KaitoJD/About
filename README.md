@@ -271,29 +271,3 @@ description: "Your description"
 ## 📄 License
 
 This project is open source and available under the [MIT License](LICENSE).
-
----
-
-<div align="center">
-  <p>Built with ❤️ by Nguyen Sy Nguyen</p>
-  <p>
-    <a href="mailto:contact.nguyensynguyen@gmail.com">Email</a> •
-    <a href="https://linkedin.com/in/nguyensynguyen">LinkedIn</a> •
-    <a href="https://github.com/yourusername">GitHub</a>
-  </p>
-</div>
-- **GitHub Pages**: Adjust `basePath` in `next.config.ts` for your repo name
-- **Deployment**: Modify `.github/workflows/nextjs.yml` if needed
-
-## 🌟 Features Highlights
-
-- **Performance**: Optimized event listeners with proper cleanup
-- **Accessibility**: Full keyboard navigation and screen reader support
-- **Responsive**: Mobile-first design with Tailwind CSS
-- **Modern React**: Uses hooks, refs, and functional components
-- **Type Safety**: Full TypeScript coverage
-- **CI/CD**: Automated deployment with GitHub Actions
-
-## 📝 License
-
-This project is open source and available under the [MIT License](LICENSE).
