@@ -40,13 +40,6 @@ body {
 /* Smooth scrolling with header offset */
 html {
   scroll-behavior: smooth;
-  scrollbar-width: none; /* Firefox 64+ */
-  -ms-overflow-style: none; /* Internet Explorer 10+ */
-}
-
-body {
-  scrollbar-width: none;
-  -ms-overflow-style: none;
 }
 
 section {
@@ -65,11 +58,24 @@ section {
   pointer-events: none !important;
 }
 
-/* Hide default scrollbar across all browsers */
-/* For WebKit browsers (Chrome, Safari, Edge) */
-::-webkit-scrollbar {
+/* Hide scrollbars across all browsers - consolidated rules */
+html, body, * {
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* Internet Explorer/Edge */
+}
+
+html, body {
+  overflow-x: hidden;
+}
+
+/* WebKit browsers (Chrome, Safari, Edge) */
+::-webkit-scrollbar,
+html::-webkit-scrollbar,
+body::-webkit-scrollbar,
+*::-webkit-scrollbar {
   width: 0px;
   background: transparent;
+  display: none;
 }
 
 ::-webkit-scrollbar-track {
@@ -78,34 +84,6 @@ section {
 
 ::-webkit-scrollbar-thumb {
   background: transparent;
-}
-
-/* For Firefox */
-html {
-  scrollbar-width: none; /* Firefox 64+ */
-  -ms-overflow-style: none; /* Internet Explorer 10+ */
-}
-
-/* Ensure body and html don't show scrollbars */
-html, body {
-  overflow-x: hidden;
-  scrollbar-width: none;
-  -ms-overflow-style: none;
-}
-
-html::-webkit-scrollbar,
-body::-webkit-scrollbar {
-  display: none;
-}
-
-/* Hide scrollbar for any scrollable container */
-* {
-  scrollbar-width: none;
-  -ms-overflow-style: none;
-}
-
-*::-webkit-scrollbar {
-  display: none;
 }
 
 /* Custom animations */
