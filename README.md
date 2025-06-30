@@ -32,8 +32,8 @@
 ### 🔧 **Advanced Features**
 - **Smart Notification System**: Toast notifications with progress bars
 - **Intersection Observer**: Scroll-triggered animations for enhanced UX
-- **Memory Management**: Proper timeout cleanup to prevent memory leaks
 - **Performance Optimized**: Static export with optimized event listeners
+- **Memory Management**: Proper timeout cleanup to prevent memory leaks
 
 ## 🛠️ Tech Stack
 
