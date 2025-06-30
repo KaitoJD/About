@@ -52,32 +52,37 @@ export default function Home() {
     timeoutRefs.current = [];
   }, []);
 
+  // Helper function to manage notification lifecycle
+  const showNotification = useCallback(() => {
+    setShowCopyNotification(true);
+    
+    // Trigger entrance animation after mounting
+    managedSetTimeout(() => {
+      setIsNotificationVisible(true);
+    }, NOTIFICATION_ENTER_DELAY);
+    
+    // Start exit animation after display duration
+    managedSetTimeout(() => {
+      setIsNotificationVisible(false);
+    }, NOTIFICATION_DISPLAY_DURATION);
+    
+    // Hide notification completely after exit animation finishes
+    managedSetTimeout(() => {
+      setShowCopyNotification(false);
+    }, NOTIFICATION_TOTAL_DURATION);
+  }, [managedSetTimeout]);
+
   // Copy Discord username function
   const copyDiscordUsername = useCallback(async () => {
     try {
       await navigator.clipboard.writeText('_notNguyen');
-      setShowCopyNotification(true);
-      
-      // Trigger entrance animation after mounting
-      managedSetTimeout(() => {
-        setIsNotificationVisible(true);
-      }, NOTIFICATION_ENTER_DELAY);
-      
-      // Start exit animation after display duration
-      managedSetTimeout(() => {
-        setIsNotificationVisible(false);
-      }, NOTIFICATION_DISPLAY_DURATION);
-      
-      // Hide notification completely after exit animation finishes
-      managedSetTimeout(() => {
-        setShowCopyNotification(false);
-      }, NOTIFICATION_TOTAL_DURATION);
+      showNotification();
     } catch (err) {
       console.error('Failed to copy username:', err);
       // Fallback for browsers that don't support clipboard API
       alert('Username: _notNguyen (copied to clipboard)');
     }
-  }, [managedSetTimeout]);
+  }, [showNotification]);
 
   // Text to type
   const fullText = "Hi! I'm Nguyen Sy Nguyen";
