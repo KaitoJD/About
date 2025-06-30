@@ -6,6 +6,11 @@ import { useEffect, useState, useRef, useCallback } from 'react';
 import clsx from 'clsx';
 import '../styles/loading.css';
 
+// Notification timing constants
+const NOTIFICATION_ENTER_DELAY = 10; // ms - delay before entrance animation starts
+const NOTIFICATION_DISPLAY_DURATION = 2500; // ms - how long notification is fully visible
+const NOTIFICATION_TOTAL_DURATION = 3000; // ms - total time before complete removal
+
 export default function Home() {
   const [isLoading, setIsLoading] = useState(true);
   const [isMounted, setIsMounted] = useState(false);
@@ -56,17 +61,17 @@ export default function Home() {
       // Trigger entrance animation after mounting
       managedSetTimeout(() => {
         setIsNotificationVisible(true);
-      }, 10);
+      }, NOTIFICATION_ENTER_DELAY);
       
-      // Start exit animation after 2.5 seconds
+      // Start exit animation after display duration
       managedSetTimeout(() => {
         setIsNotificationVisible(false);
-      }, 2500);
+      }, NOTIFICATION_DISPLAY_DURATION);
       
       // Hide notification completely after exit animation finishes
       managedSetTimeout(() => {
         setShowCopyNotification(false);
-      }, 3000);
+      }, NOTIFICATION_TOTAL_DURATION);
     } catch (err) {
       console.error('Failed to copy username:', err);
       // Fallback for browsers that don't support clipboard API
@@ -295,8 +300,13 @@ export default function Home() {
               Discord username copied to clipboard!
             </span>
             {/* Progress bar */}
-            <div className="absolute bottom-0 left-0 h-1 bg-emerald-400 rounded-b-lg transition-all duration-[2500ms] ease-linear"
-                 style={{ width: showCopyNotification ? '100%' : '0%' }}>
+            <div 
+              className="absolute bottom-0 left-0 h-1 bg-emerald-400 rounded-b-lg transition-all ease-linear"
+              style={{ 
+                width: showCopyNotification ? '100%' : '0%',
+                transitionDuration: `${NOTIFICATION_DISPLAY_DURATION}ms`
+              }}
+            >
             </div>
           </div>
         </div>
