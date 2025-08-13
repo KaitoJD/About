@@ -52,6 +52,25 @@ export default function Home() {
     timeoutRefs.current = [];
   }, []);
 
+  // Smooth scroll to section function
+  const scrollToSection = useCallback((sectionId: string) => {
+    const element = document.getElementById(sectionId);
+    if (element) {
+      const navHeight = 80; // Approximate navigation height
+      const elementPosition = element.offsetTop - navHeight;
+
+      window.scrollTo({
+        top: elementPosition,
+        behavior: 'smooth'
+      });
+
+      // Close mobile menu if open
+      if (isMobileMenuOpen) {
+        setIsMobileMenuOpen(false);
+      }
+    }
+  }, [isMobileMenuOpen]);
+
   // Helper function to manage notification lifecycle
   const showNotification = useCallback(() => {
     setShowCopyNotification(true);
@@ -263,12 +282,6 @@ export default function Home() {
     }
   }, [isAnimationsComplete]);
 
-  const closeMobileMenu = useCallback(() => {
-    if (isAnimationsComplete) {
-      setIsMobileMenuOpen(false);
-    }
-  }, [isAnimationsComplete]);
-
   // Don't render anything until mounted on client-side
   if (!isMounted) {
     return null;
@@ -364,15 +377,15 @@ export default function Home() {
                 "opacity-0 translate-y-2": !showHeader,
               }
             )}>
-              <a href="#about" className="nav-link text-slate-600 dark:text-slate-300 hover:text-emerald-600 dark:hover:text-emerald-400 transition-all duration-300 py-2 px-3 lg:px-4 rounded-lg hover:bg-emerald-50 dark:hover:bg-emerald-900/20 text-sm lg:text-base">
+              <button onClick={() => scrollToSection('about')} className="nav-link text-slate-600 dark:text-slate-300 hover:text-emerald-600 dark:hover:text-emerald-400 transition-all duration-300 py-2 px-3 lg:px-4 rounded-lg hover:bg-emerald-50 dark:hover:bg-emerald-900/20 text-sm lg:text-base">
                 About
-              </a>
-              <a href="#timeline" className="nav-link text-slate-600 dark:text-slate-300 hover:text-emerald-600 dark:hover:text-emerald-400 transition-all duration-300 py-2 px-3 lg:px-4 rounded-lg hover:bg-emerald-50 dark:hover:bg-emerald-900/20 text-sm lg:text-base">
+              </button>
+              <button onClick={() => scrollToSection('timeline')} className="nav-link text-slate-600 dark:text-slate-300 hover:text-emerald-600 dark:hover:text-emerald-400 transition-all duration-300 py-2 px-3 lg:px-4 rounded-lg hover:bg-emerald-50 dark:hover:bg-emerald-900/20 text-sm lg:text-base">
                 Timeline
-              </a>
-              <a href="#contact" className="nav-link text-slate-600 dark:text-slate-300 hover:text-emerald-600 dark:hover:text-emerald-400 transition-all duration-300 py-2 px-3 lg:px-4 rounded-lg hover:bg-emerald-50 dark:hover:bg-emerald-900/20 text-sm lg:text-base">
+              </button>
+              <button onClick={() => scrollToSection('contact')} className="nav-link text-slate-600 dark:text-slate-300 hover:text-emerald-600 dark:hover:text-emerald-400 transition-all duration-300 py-2 px-3 lg:px-4 rounded-lg hover:bg-emerald-50 dark:hover:bg-emerald-900/20 text-sm lg:text-base">
                 Contact
-              </a>
+              </button>
             </div>
 
             {/* Mobile Menu Button */}
@@ -409,27 +422,24 @@ export default function Home() {
                 )}
               >
                 <div className="py-2">
-                  <a 
-                    href="#about" 
-                    className="block px-4 py-3 text-slate-600 dark:text-slate-300 hover:text-emerald-600 dark:hover:text-emerald-400 hover:bg-emerald-50 dark:hover:bg-emerald-900/20 transition-colors"
-                    onClick={closeMobileMenu}
+                  <button
+                    onClick={() => scrollToSection('about')}
+                    className="block w-full text-left px-4 py-3 text-slate-600 dark:text-slate-300 hover:text-emerald-600 dark:hover:text-emerald-400 hover:bg-emerald-50 dark:hover:bg-emerald-900/20 transition-colors"
                   >
                     About
-                  </a>
-                  <a 
-                    href="#timeline" 
-                    className="block px-4 py-3 text-slate-600 dark:text-slate-300 hover:text-emerald-600 dark:hover:text-emerald-400 hover:bg-emerald-50 dark:hover:bg-emerald-900/20 transition-colors"
-                    onClick={closeMobileMenu}
+                  </button>
+                  <button
+                    onClick={() => scrollToSection('timeline')}
+                    className="block w-full text-left px-4 py-3 text-slate-600 dark:text-slate-300 hover:text-emerald-600 dark:hover:text-emerald-400 hover:bg-emerald-50 dark:hover:bg-emerald-900/20 transition-colors"
                   >
                     Timeline
-                  </a>
-                  <a 
-                    href="#contact" 
-                    className="block px-4 py-3 text-slate-600 dark:text-slate-300 hover:text-emerald-600 dark:hover:text-emerald-400 hover:bg-emerald-50 dark:hover:bg-emerald-900/20 transition-colors"
-                    onClick={closeMobileMenu}
+                  </button>
+                  <button
+                    onClick={() => scrollToSection('contact')}
+                    className="block w-full text-left px-4 py-3 text-slate-600 dark:text-slate-300 hover:text-emerald-600 dark:hover:text-emerald-400 hover:bg-emerald-50 dark:hover:bg-emerald-900/20 transition-colors"
                   >
                     Contact
-                  </a>
+                  </button>
                 </div>
               </div>
             </div>
@@ -510,21 +520,21 @@ export default function Home() {
                 "opacity-0 translate-y-8": !showButtons,
               }
             )}>
-              <a
-                href="#timeline"
+              <button
+                onClick={() => scrollToSection('timeline')}
                 className="bg-emerald-600 hover:bg-emerald-700 text-white px-6 sm:px-8 py-3 sm:py-4 rounded-lg font-medium transition-all duration-300 text-center inline-flex items-center justify-center group font-mono text-sm sm:text-base button-hover-effect"
               >
                 <span>View My Journey</span>
                 <svg className="w-4 h-4 sm:w-5 sm:h-5 ml-2 transform group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
                 </svg>
-              </a>
-              <a
-                href="#contact"
+              </button>
+              <button
+                onClick={() => scrollToSection('contact')}
                 className="border-2 border-emerald-600 text-emerald-600 hover:bg-emerald-600 hover:text-white dark:border-emerald-400 dark:text-emerald-400 dark:hover:bg-emerald-400 dark:hover:text-slate-900 px-6 sm:px-8 py-3 sm:py-4 rounded-lg font-medium transition-all duration-300 text-center font-mono text-sm sm:text-base button-hover-effect"
               >
                 Contact Me
-              </a>
+              </button>
             </div>
           </div>
         </div>
@@ -762,14 +772,14 @@ export default function Home() {
                   <div className="w-full max-w-xs sm:max-w-sm md:max-w-md lg:max-w-lg xl:max-w-xl mr-auto pr-4 sm:pr-12 md:pr-16 lg:pr-20 xl:pr-28">
                     <div className="relative z-10 bg-white dark:bg-slate-800 p-4 sm:p-5 md:p-6 rounded-xl shadow-md hover:shadow-lg transition-shadow border-r-4 border-purple-600 dark:border-purple-400">
                       <div className="text-purple-600 dark:text-purple-400 font-semibold text-xs sm:text-sm mb-2">
-                        June 2025 - Present
+                        2025
                       </div>
                       <h3 className="text-base sm:text-lg md:text-xl font-bold text-slate-900 dark:text-white mb-2 sm:mb-3 leading-tight">
                         Community Leadership & Management
                       </h3>
                       <div className="space-y-2 sm:space-y-3 text-slate-600 dark:text-slate-300 text-xs sm:text-sm md:text-base leading-relaxed">
                         <p>• Discord Administrator at FCoder</p>
-                        <p>• Managing and growing a vibrant developer community</p>
+                        <p>• Team Member at GitHub Education</p>
                         <p>• Facilitating technical discussions and knowledge sharing</p>
                       </div>
                       <div className="flex flex-wrap gap-1 sm:gap-2 mt-3 sm:mt-4">
@@ -1003,7 +1013,7 @@ export default function Home() {
                 <div className="w-16 h-16 bg-blue-100 dark:bg-blue-900 rounded-full flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300">
                   <svg className="w-8 h-8 text-blue-600 dark:text-blue-400" fill="currentColor" viewBox="0 0 24 24">
                     <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
-                  </svg>
+                </svg>
                 </div>
                 <h3 className="text-xl font-semibold text-slate-900 dark:text-white mb-3">LinkedIn</h3>
                 <p className="text-slate-600 dark:text-slate-300 mb-6 text-sm flex-grow">
@@ -1016,7 +1026,7 @@ export default function Home() {
                   className="inline-flex items-center justify-center w-full bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg font-medium transition-all duration-300 group-hover:scale-105 h-12"
                 >
                   <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002-2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
                   </svg>
                   Connect
                 </a>
@@ -1040,7 +1050,7 @@ export default function Home() {
                   className="inline-flex items-center justify-center w-full bg-gray-700 hover:bg-gray-800 dark:bg-gray-600 dark:hover:bg-gray-700 text-white px-6 py-3 rounded-lg font-medium transition-all duration-300 group-hover:scale-105 h-12"
                 >
                   <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002-2h-10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
                   </svg>
                   View Profile
                 </a>
@@ -1102,7 +1112,7 @@ export default function Home() {
                   className="inline-flex items-center justify-center w-full bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg font-medium transition-all duration-300 group-hover:scale-105 h-12"
                 >
                   <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002-2h-10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
                   </svg>
                   Visit Profile
                 </a>
@@ -1162,7 +1172,7 @@ export default function Home() {
                 className="border-2 border-emerald-600 text-emerald-600 hover:bg-emerald-600 hover:text-white dark:border-emerald-400 dark:text-emerald-400 dark:hover:bg-emerald-400 dark:hover:text-slate-900 px-8 py-4 rounded-lg font-semibold transition-all duration-300 inline-flex items-center justify-center group"
               >
                 <svg className="w-5 h-5 mr-2 group-hover:scale-110 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8h2a2 2 0 012 2v6a2 2 0 01-2 2h-2v4l-4-4H9a2 2 0 01-2-2v-6a2 2 0 012-2h2m5-4v2m0 4h.01" />
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8h2a2 2 0 012 2v6a2 2 0 01-2 2h-2v4l-4-4H9a2 2 0 01-2-2v-6a2 2 0 012-2h2v-1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
                 </svg>
                 Let&apos;s Chat on LinkedIn
               </a>
