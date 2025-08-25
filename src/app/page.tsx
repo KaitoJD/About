@@ -1065,10 +1065,10 @@ export default function Home() {
                 </p>
                 <a
                   href="mailto:contact.nguyensynguyen@gmail.com"
-                  className="inline-flex items-center justify-center w-full bg-emerald-600 hover:bg-emerald-700 text-white px-6 py-3 rounded-lg font-medium transition-all duration-300 group-hover:scale-105 h-12"
+                  className="inline-flex items-center justify-center w-full bg-emerald-600 hover:bg-emerald-700 hover:scale-105 text-white px-6 py-3 rounded-lg font-medium transition-all duration-300 h-12"
                 >
                   <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8" />
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
                   </svg>
                   Send Email
                 </a>
@@ -1089,7 +1089,7 @@ export default function Home() {
                   href="https://linkedin.com/in/nguyensynguyen"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center justify-center w-full bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg font-medium transition-all duration-300 group-hover:scale-105 h-12"
+                  className="inline-flex items-center justify-center w-full bg-blue-600 hover:bg-blue-700 hover:scale-105 text-white px-6 py-3 rounded-lg font-medium transition-all duration-300 h-12"
                 >
                   <svg className="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 24 24">
                     <path d="M19 3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2zM9 17H6.5v-7H9v7zM7.75 8.5c-.69 0-1.25-.56-1.25-1.25s.56-1.25 1.25-1.25 1.25.56 1.25 1.25-.56 1.25-1.25 1.25zM18 17h-2.5v-3.5c0-.83-.67-1.5-1.5-1.5s-1.5.67-1.5 1.5V17H10v-7h2.5v1.5c.5-.75 1.5-1.5 2.5-1.5 1.66 0 3 1.34 3 3V17z"/>
@@ -1113,7 +1113,7 @@ export default function Home() {
                   href="https://github.com/KaitoJD"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center justify-center w-full bg-gray-700 hover:bg-gray-800 dark:bg-gray-600 dark:hover:bg-gray-700 text-white px-6 py-3 rounded-lg font-medium transition-all duration-300 group-hover:scale-105 h-12"
+                  className="inline-flex items-center justify-center w-full bg-gray-700 hover:bg-gray-800 hover:scale-105 dark:bg-gray-600 dark:hover:bg-gray-700 text-white px-6 py-3 rounded-lg font-medium transition-all duration-300 h-12"
                 >
                   <svg className="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 24 24">
                     <path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/>
@@ -1150,10 +1150,10 @@ export default function Home() {
                   </p>
                   <button
                     onClick={copyDiscordUsername}
-                    className="inline-flex items-center justify-center w-full bg-indigo-600 hover:bg-indigo-700 text-white px-6 py-3 rounded-lg font-medium transition-all duration-300 group-hover:scale-105 h-12"
+                    className="inline-flex items-center justify-center w-full bg-indigo-600 hover:bg-indigo-700 hover:scale-105 text-white px-6 py-3 rounded-lg font-medium transition-all duration-300 h-12"
                   >
-                    <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" />
+                    <svg className="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 24 24">
+                      <path d="M16 3H4v13h12l4 4V3zm-3 9H7v-2h6v2zm0-3H7V7h6v2z"/>
                     </svg>
                     Copy Username
                   </button>
@@ -1175,7 +1175,7 @@ export default function Home() {
                   href="https://facebook.com/kaito.dev"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center justify-center w-full bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg font-medium transition-all duration-300 group-hover:scale-105 h-12"
+                  className="inline-flex items-center justify-center w-full bg-blue-600 hover:bg-blue-700 hover:scale-105 text-white px-6 py-3 rounded-lg font-medium transition-all duration-300 h-12"
                 >
                   <svg className="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 24 24">
                     <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
@@ -1200,7 +1200,7 @@ export default function Home() {
                   href="https://chess.com/member/nsNguyen"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center justify-center w-full bg-amber-600 hover:bg-amber-700 text-white px-6 py-3 rounded-lg font-medium transition-all duration-300 group-hover:scale-105 h-12"
+                  className="inline-flex items-center justify-center w-full bg-amber-600 hover:bg-amber-700 hover:scale-105 text-white px-6 py-3 rounded-lg font-medium transition-all duration-300 h-12"
                 >
                   <svg className="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 24 24">
                     <path d="M12 2c.5 0 1 .4 1 1v1h1c.5 0 1 .4 1 1s-.4 1-1 1h-1v.5L14.5 8H16c.5 0 1 .4 1 1s-.4 1-1 1h-.5L17 11.5c.3.3.3.8 0 1.1l-1.4 1.4c-.3.3-.8.3-1.1 0l-.5-.5V15h2c.5 0 1 .4 1 1v1H7v-1c0-.5.4-1 1-1h2v-1.5l-.5.5c-.3.3-.8.3-1.1 0L7 13.6c-.3-.3-.3-.8 0-1.1L8.5 11H8c-.5 0-1-.4-1-1s.4-1 1-1h1.5L11 6.5V6h-1c-.5 0-1-.4-1-1s.4-1 1-1h1V3c0-.5.4-1 1-1zm0 16c-3.3 0-6 1.3-6 3v1h12v-1c0-1.7-2.7-3-6-3z"/>
