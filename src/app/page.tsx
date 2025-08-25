@@ -32,6 +32,9 @@ export default function Home() {
   const [showCopyNotification, setShowCopyNotification] = useState(false);
   const [isNotificationVisible, setIsNotificationVisible] = useState(false);
   
+  // Scroll animations state
+  const [scrollAnimations, setScrollAnimations] = useState<Record<string, boolean>>({});
+  
   const mobileMenuRef = useRef<HTMLDivElement>(null);
   const mobileMenuButtonRef = useRef<HTMLButtonElement>(null);
   const isMobileMenuOpenRef = useRef(false);
@@ -231,6 +234,39 @@ export default function Home() {
       clearAllTimeouts();
     };
   }, [clearAllTimeouts]);
+
+  // Setup scroll animations when intro animations complete
+  useEffect(() => {
+    if (!isAnimationsComplete) return;
+
+    const observerOptions = {
+      root: null,
+      rootMargin: '-100px 0px -100px 0px',
+      threshold: 0.1
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          const animationId = entry.target.getAttribute('data-scroll-animation');
+          if (animationId) {
+            setScrollAnimations(prev => ({
+              ...prev,
+              [animationId]: true
+            }));
+          }
+        }
+      });
+    }, observerOptions);
+
+    // Observe all elements with scroll animation data attributes
+    const elementsToObserve = document.querySelectorAll('[data-scroll-animation]');
+    elementsToObserve.forEach((el) => observer.observe(el));
+
+    return () => {
+      observer.disconnect();
+    };
+  }, [isAnimationsComplete]);
 
   // Block interactions until animations are complete
   useEffect(() => {
@@ -543,7 +579,12 @@ export default function Home() {
       {/* About Section */}
       <section id="about" className="py-16 sm:py-20 lg:py-24 px-4 sm:px-6 lg:px-8 bg-white dark:bg-slate-800 font-sans scroll-mt-20">
         <div className="max-w-7xl mx-auto">
-          <div className="text-center mb-12 sm:mb-16 lg:mb-20">
+          <div 
+            className={`text-center mb-12 sm:mb-16 lg:mb-20 transition-all duration-1000 ease-out ${
+              scrollAnimations.aboutHeader ? 'animate-fade-in-up' : ''
+            }`}
+            data-scroll-animation="aboutHeader"
+          >
             <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-slate-900 dark:text-white mb-4 sm:mb-6">
               About Me
             </h2>
@@ -552,9 +593,14 @@ export default function Home() {
               Passionate about crafting digital experiences that make a difference
             </p>
           </div>
-          
+
           {/* Main Content Grid */}
-          <div className="grid lg:grid-cols-5 gap-8 sm:gap-12 lg:gap-16">
+          <div 
+            className={`grid lg:grid-cols-5 gap-8 sm:gap-12 lg:gap-16 transition-all duration-1000 ease-out delay-300 ${
+              scrollAnimations.aboutContent ? 'animate-fade-in-up' : ''
+            }`}
+            data-scroll-animation="aboutContent"
+          >
             {/* Personal Story & Background */}
             <div className="lg:col-span-3 space-y-6 sm:space-y-8">
               {/* Introduction */}
@@ -564,13 +610,13 @@ export default function Home() {
                   Who I Am
                 </h3>
                 <p className="text-base sm:text-lg text-slate-600 dark:text-slate-300 leading-relaxed mb-4">
-                  Hello! I&apos;m <span className="font-semibold text-emerald-600 dark:text-emerald-400">Nguyen Sy Nguyen</span>, 
-                  a passionate Software Engineering student at <span className="font-semibold">FPT University</span> with 
+                  Hello! I&apos;m <span className="font-semibold text-emerald-600 dark:text-emerald-400">Nguyen Sy Nguyen</span>,
+                  a passionate Software Engineering student at <span className="font-semibold">FPT University</span> with
                   a deep love for creating innovative digital solutions that solve real-world problems.
                 </p>
                 <p className="text-base sm:text-lg text-slate-600 dark:text-slate-300 leading-relaxed">
-                  My journey in technology began with a curiosity about how things work, which evolved into a passion 
-                  for building them. From winning provincial physics competitions to managing developer communities, 
+                  My journey in technology began with a curiosity about how things work, which evolved into a passion
+                  for building them. From winning provincial physics competitions to managing developer communities,
                   I&apos;ve always been driven by the desire to learn, create, and share knowledge.
                 </p>
               </div>
@@ -686,7 +732,7 @@ export default function Home() {
                 </span>
               </div>
             </div>
-            
+
             {/* Tech Stack & Tools */}
             <div className="lg:col-span-2 space-y-6">
               <div className="bg-slate-50 dark:bg-slate-700 p-6 sm:p-8 rounded-xl shadow-sm border border-slate-200 dark:border-slate-600">
@@ -746,7 +792,12 @@ export default function Home() {
       {/* Timeline Section */}
       <section id="timeline" className="py-16 sm:py-20 lg:py-24 px-4 sm:px-6 lg:px-8 bg-slate-50 dark:bg-slate-900 font-sans scroll-mt-20">
         <div className="max-w-7xl mx-auto">
-          <div className="text-center mb-12 sm:mb-16 lg:mb-20">
+          <div 
+            className={`text-center mb-12 sm:mb-16 lg:mb-20 transition-all duration-1000 ease-out ${
+              scrollAnimations.timelineHeader ? 'animate-fade-in-up' : ''
+            }`}
+            data-scroll-animation="timelineHeader"
+          >
             <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-slate-900 dark:text-white mb-4 sm:mb-6">
               My Journey
             </h2>
@@ -756,7 +807,12 @@ export default function Home() {
             </p>
           </div>
 
-          <div className="relative max-w-6xl mx-auto">
+          <div 
+            className={`relative max-w-6xl mx-auto transition-all duration-1000 ease-out delay-300 ${
+              scrollAnimations.timelineContent ? 'animate-fade-in-up' : ''
+            }`}
+            data-scroll-animation="timelineContent"
+          >
             {/* Main trunk - vertical line with lower z-index */}
             <div className="absolute left-1/2 top-0 w-1 bg-emerald-600 dark:bg-emerald-400 transform -translate-x-1/2 z-0" style={{ height: 'calc(100% - 100px)' }}></div>
 
@@ -767,7 +823,7 @@ export default function Home() {
                 <div className="hidden sm:block absolute right-1/2 top-8 w-8 md:w-12 lg:w-16 xl:w-24 h-0.5 bg-emerald-600 dark:bg-emerald-400 z-0"></div>
                 {/* Junction dot - lower z-index so cards appear on top */}
                 <div className="absolute left-1/2 top-6 w-4 h-4 bg-emerald-600 dark:bg-emerald-400 rounded-full border-4 border-white dark:border-slate-50 transform -translate-x-1/2 z-0"></div>
-                
+
                 <div className="flex justify-start">
                   <div className="w-full max-w-xs sm:max-w-sm md:max-w-md lg:max-w-lg xl:max-w-xl mr-auto pr-4 sm:pr-12 md:pr-16 lg:pr-20 xl:pr-28">
                     <div className="relative z-10 bg-white dark:bg-slate-800 p-4 sm:p-5 md:p-6 rounded-xl shadow-md hover:shadow-lg transition-shadow border-r-4 border-purple-600 dark:border-purple-400">
@@ -798,7 +854,7 @@ export default function Home() {
                 <div className="hidden sm:block absolute left-1/2 top-8 w-8 md:w-12 lg:w-16 xl:w-24 h-0.5 bg-emerald-600 dark:bg-emerald-400 z-0"></div>
                 {/* Junction dot - lower z-index so cards appear on top */}
                 <div className="absolute left-1/2 top-6 w-4 h-4 bg-emerald-600 dark:bg-emerald-400 rounded-full border-4 border-white dark:border-slate-50 transform -translate-x-1/2 z-0"></div>
-                
+
                 <div className="flex justify-end">
                   <div className="w-full max-w-xs sm:max-w-sm md:max-w-md lg:max-w-lg xl:max-w-xl ml-auto pl-4 sm:pl-12 md:pl-16 lg:pl-20 xl:pl-28">
                     <div className="relative z-10 bg-white dark:bg-slate-800 p-4 sm:p-5 md:p-6 rounded-xl shadow-md hover:shadow-lg transition-shadow border-l-4 border-emerald-600 dark:border-emerald-400">
@@ -828,7 +884,7 @@ export default function Home() {
                 <div className="hidden sm:block absolute right-1/2 top-8 w-8 md:w-12 lg:w-16 xl:w-24 h-0.5 bg-emerald-600 dark:bg-emerald-400 z-0"></div>
                 {/* Junction dot - lower z-index so cards appear on top */}
                 <div className="absolute left-1/2 top-6 w-4 h-4 bg-emerald-600 dark:bg-emerald-400 rounded-full border-4 border-white dark:border-slate-50 transform -translate-x-1/2 z-0"></div>
-                
+
                 <div className="flex justify-start">
                   <div className="w-full max-w-xs sm:max-w-sm md:max-w-md lg:max-w-lg xl:max-w-xl mr-auto pr-4 sm:pr-12 md:pr-16 lg:pr-20 xl:pr-28">
                     <div className="relative z-10 bg-white dark:bg-slate-800 p-4 sm:p-5 md:p-6 rounded-xl shadow-md hover:shadow-lg transition-shadow border-r-4 border-emerald-600 dark:border-emerald-400">
@@ -858,7 +914,7 @@ export default function Home() {
                 <div className="hidden sm:block absolute left-1/2 top-8 w-8 md:w-12 lg:w-16 xl:w-24 h-0.5 bg-emerald-600 dark:bg-emerald-400 z-0"></div>
                 {/* Junction dot - lower z-index so cards appear on top */}
                 <div className="absolute left-1/2 top-6 w-4 h-4 bg-emerald-600 dark:bg-emerald-400 rounded-full border-4 border-white dark:border-slate-50 transform -translate-x-1/2 z-0"></div>
-                
+
                 <div className="flex justify-end">
                   <div className="w-full max-w-xs sm:max-w-sm md:max-w-md lg:max-w-lg xl:max-w-xl ml-auto pl-4 sm:pl-12 md:pl-16 lg:pl-20 xl:pl-28">
                     <div className="relative z-10 bg-white dark:bg-slate-800 p-4 sm:p-5 md:p-6 rounded-xl shadow-md hover:shadow-lg transition-shadow border-l-4 border-blue-600 dark:border-blue-400">
@@ -888,7 +944,7 @@ export default function Home() {
                 <div className="hidden sm:block absolute right-1/2 top-8 w-8 md:w-12 lg:w-16 xl:w-24 h-0.5 bg-emerald-600 dark:bg-emerald-400 z-0"></div>
                 {/* Junction dot - lower z-index so cards appear on top */}
                 <div className="absolute left-1/2 top-6 w-4 h-4 bg-emerald-600 dark:bg-emerald-400 rounded-full border-4 border-white dark:border-slate-50 transform -translate-x-1/2 z-0"></div>
-                
+
                 <div className="flex justify-start">
                   <div className="w-full max-w-xs sm:max-w-sm md:max-w-md lg:max-w-lg xl:max-w-xl mr-auto pr-4 sm:pr-12 md:pr-16 lg:pr-20 xl:pr-28">
                     <div className="relative z-10 bg-white dark:bg-slate-800 p-4 sm:p-5 md:p-6 rounded-xl shadow-md hover:shadow-lg transition-shadow border-r-4 border-orange-600 dark:border-orange-400">
@@ -917,7 +973,7 @@ export default function Home() {
                 <div className="hidden sm:block absolute left-1/2 top-8 w-8 md:w-12 lg:w-16 xl:w-24 h-0.5 bg-emerald-600 dark:bg-emerald-400 z-0"></div>
                 {/* Junction dot - lower z-index so cards appear on top */}
                 <div className="absolute left-1/2 top-6 w-4 h-4 bg-emerald-600 dark:bg-emerald-400 rounded-full border-4 border-white dark:border-slate-50 transform -translate-x-1/2 z-0"></div>
-                
+
                 <div className="flex justify-end">
                   <div className="w-full max-w-xs sm:max-w-sm md:max-w-md lg:max-w-lg xl:max-w-xl ml-auto pl-4 sm:pl-12 md:pl-16 lg:pl-20 xl:pl-28">
                     <div className="relative z-10 bg-white dark:bg-slate-800 p-4 sm:p-5 md:p-6 rounded-xl shadow-md hover:shadow-lg transition-shadow border-l-4 border-pink-600 dark:border-pink-400">
@@ -965,7 +1021,12 @@ export default function Home() {
       {/* Contact Section */}
       <section id="contact" className="py-20 px-4 sm:px-6 lg:px-8 bg-white dark:bg-slate-800 font-sans scroll-mt-20">
         <div className="max-w-6xl mx-auto">
-          <div className="text-center mb-16">
+          <div 
+            className={`text-center mb-16 transition-all duration-1000 ease-out ${
+              scrollAnimations.contactHeader ? 'animate-fade-in-up' : ''
+            }`}
+            data-scroll-animation="contactHeader"
+          >
             <h2 className="text-3xl md:text-4xl font-bold text-slate-900 dark:text-white mb-6">
               Let&apos;s Connect
             </h2>
@@ -976,7 +1037,12 @@ export default function Home() {
           </div>
 
           {/* Professional Contact */}
-          <div className="mb-16">
+          <div 
+            className={`mb-16 transition-all duration-1000 ease-out delay-300 ${
+              scrollAnimations.contactCards ? 'animate-fade-in-up' : ''
+            }`}
+            data-scroll-animation="contactCards"
+          >
             <h3 className="text-2xl font-bold text-slate-900 dark:text-white mb-8 text-center flex items-center justify-center">
               <svg className="w-6 h-6 text-emerald-600 dark:text-emerald-400 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <rect x="4" y="8" width="16" height="12" rx="2" ry="2" strokeWidth="2"/>
@@ -997,7 +1063,7 @@ export default function Home() {
                 <p className="text-slate-600 dark:text-slate-300 mb-6 text-sm flex-grow">
                   Drop me a line for project inquiries or collaboration opportunities
                 </p>
-                <a 
+                <a
                   href="mailto:contact.nguyensynguyen@gmail.com"
                   className="inline-flex items-center justify-center w-full bg-emerald-600 hover:bg-emerald-700 text-white px-6 py-3 rounded-lg font-medium transition-all duration-300 group-hover:scale-105 h-12"
                 >
@@ -1019,7 +1085,7 @@ export default function Home() {
                 <p className="text-slate-600 dark:text-slate-300 mb-6 text-sm flex-grow">
                   Connect with me for professional networking and career discussions
                 </p>
-                <a 
+                <a
                   href="https://linkedin.com/in/nguyensynguyen"
                   target="_blank"
                   rel="noopener noreferrer"
@@ -1043,7 +1109,7 @@ export default function Home() {
                 <p className="text-slate-600 dark:text-slate-300 mb-6 text-sm flex-grow">
                   Explore my projects and see what I&apos;ve been building lately
                 </p>
-                <a 
+                <a
                   href="https://github.com/KaitoJD"
                   target="_blank"
                   rel="noopener noreferrer"
@@ -1082,7 +1148,7 @@ export default function Home() {
                   <p className="text-sm font-mono bg-slate-200 dark:bg-slate-600 text-slate-800 dark:text-slate-200 px-3 py-2 rounded">
                     @_notNguyen
                   </p>
-                  <button 
+                  <button
                     onClick={copyDiscordUsername}
                     className="inline-flex items-center justify-center w-full bg-indigo-600 hover:bg-indigo-700 text-white px-6 py-3 rounded-lg font-medium transition-all duration-300 group-hover:scale-105 h-12"
                   >
@@ -1105,7 +1171,7 @@ export default function Home() {
                 <p className="text-slate-600 dark:text-slate-300 mb-6 text-sm flex-grow">
                   Connect with me on Facebook for personal updates and conversations
                 </p>
-                <a 
+                <a
                   href="https://facebook.com/kaito.dev"
                   target="_blank"
                   rel="noopener noreferrer"
@@ -1130,7 +1196,7 @@ export default function Home() {
                 <p className="text-slate-600 dark:text-slate-300 mb-6 text-sm flex-grow">
                   Challenge me to a game of chess or check out my tournament history
                 </p>
-                <a 
+                <a
                   href="https://chess.com/member/nsNguyen"
                   target="_blank"
                   rel="noopener noreferrer"
@@ -1152,11 +1218,11 @@ export default function Home() {
               Ready to Start a Project?
             </h3>
             <p className="text-slate-600 dark:text-slate-300 mb-8 max-w-2xl mx-auto">
-              I&apos;m always excited to work on innovative projects and help bring ideas to life. 
+              I&apos;m always excited to work on innovative projects and help bring ideas to life.
               Let&apos;s discuss how we can collaborate!
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <a 
+              <a
                 href="mailto:contact.nguyensynguyen@gmail.com"
                 className="bg-emerald-600 hover:bg-emerald-700 text-white px-8 py-4 rounded-lg font-semibold transition-all duration-300 inline-flex items-center justify-center group"
               >
@@ -1165,7 +1231,7 @@ export default function Home() {
                 </svg>
                 Send Me an Email
               </a>
-              <a 
+              <a
                 href="https://linkedin.com/in/nguyensynguyen"
                 target="_blank"
                 rel="noopener noreferrer"
@@ -1182,7 +1248,12 @@ export default function Home() {
       </section>
 
       {/* Footer */}
-      <footer className="bg-slate-900 text-white py-8 px-4 sm:px-6 lg:px-8">
+      <footer 
+        className={`bg-slate-900 text-white py-8 px-4 sm:px-6 lg:px-8 transition-all duration-1000 ease-out ${
+          scrollAnimations.footer ? 'animate-fade-in-up' : ''
+        }`}
+        data-scroll-animation="footer"
+      >
         <div className="max-w-6xl mx-auto text-center">
           <p className="text-slate-400">
             © {new Date().getFullYear()} Nguyen Sy Nguyen. All rights reserved.
