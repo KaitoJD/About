@@ -32,6 +32,9 @@ export default function Home() {
   const [showCopyNotification, setShowCopyNotification] = useState(false);
   const [isNotificationVisible, setIsNotificationVisible] = useState(false);
   
+  // Scroll animations state
+  const [scrollAnimations, setScrollAnimations] = useState<Record<string, boolean>>({});
+  
   const mobileMenuRef = useRef<HTMLDivElement>(null);
   const mobileMenuButtonRef = useRef<HTMLButtonElement>(null);
   const isMobileMenuOpenRef = useRef(false);
@@ -231,6 +234,39 @@ export default function Home() {
       clearAllTimeouts();
     };
   }, [clearAllTimeouts]);
+
+  // Setup scroll animations when intro animations complete
+  useEffect(() => {
+    if (!isAnimationsComplete) return;
+
+    const observerOptions = {
+      root: null,
+      rootMargin: '-100px 0px -100px 0px',
+      threshold: 0.1
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          const animationId = entry.target.getAttribute('data-scroll-animation');
+          if (animationId) {
+            setScrollAnimations(prev => ({
+              ...prev,
+              [animationId]: true
+            }));
+          }
+        }
+      });
+    }, observerOptions);
+
+    // Observe all elements with scroll animation data attributes
+    const elementsToObserve = document.querySelectorAll('[data-scroll-animation]');
+    elementsToObserve.forEach((el) => observer.observe(el));
+
+    return () => {
+      observer.disconnect();
+    };
+  }, [isAnimationsComplete]);
 
   // Block interactions until animations are complete
   useEffect(() => {
@@ -543,7 +579,12 @@ export default function Home() {
       {/* About Section */}
       <section id="about" className="py-16 sm:py-20 lg:py-24 px-4 sm:px-6 lg:px-8 bg-white dark:bg-slate-800 font-sans scroll-mt-20">
         <div className="max-w-7xl mx-auto">
-          <div className="text-center mb-12 sm:mb-16 lg:mb-20">
+          <div 
+            className={`text-center mb-12 sm:mb-16 lg:mb-20 transition-all duration-1000 ease-out ${
+              scrollAnimations.aboutHeader ? 'animate-fade-in-up' : ''
+            }`}
+            data-scroll-animation="aboutHeader"
+          >
             <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-slate-900 dark:text-white mb-4 sm:mb-6">
               About Me
             </h2>
@@ -552,9 +593,14 @@ export default function Home() {
               Passionate about crafting digital experiences that make a difference
             </p>
           </div>
-          
+
           {/* Main Content Grid */}
-          <div className="grid lg:grid-cols-5 gap-8 sm:gap-12 lg:gap-16">
+          <div 
+            className={`grid lg:grid-cols-5 gap-8 sm:gap-12 lg:gap-16 transition-all duration-1000 ease-out delay-300 ${
+              scrollAnimations.aboutContent ? 'animate-fade-in-up' : ''
+            }`}
+            data-scroll-animation="aboutContent"
+          >
             {/* Personal Story & Background */}
             <div className="lg:col-span-3 space-y-6 sm:space-y-8">
               {/* Introduction */}
@@ -564,13 +610,13 @@ export default function Home() {
                   Who I Am
                 </h3>
                 <p className="text-base sm:text-lg text-slate-600 dark:text-slate-300 leading-relaxed mb-4">
-                  Hello! I&apos;m <span className="font-semibold text-emerald-600 dark:text-emerald-400">Nguyen Sy Nguyen</span>, 
-                  a passionate Software Engineering student at <span className="font-semibold">FPT University</span> with 
+                  Hello! I&apos;m <span className="font-semibold text-emerald-600 dark:text-emerald-400">Nguyen Sy Nguyen</span>,
+                  a passionate Software Engineering student at <span className="font-semibold">FPT University</span> with
                   a deep love for creating innovative digital solutions that solve real-world problems.
                 </p>
                 <p className="text-base sm:text-lg text-slate-600 dark:text-slate-300 leading-relaxed">
-                  My journey in technology began with a curiosity about how things work, which evolved into a passion 
-                  for building them. From winning provincial physics competitions to managing developer communities, 
+                  My journey in technology began with a curiosity about how things work, which evolved into a passion
+                  for building them. From winning provincial physics competitions to managing developer communities,
                   I&apos;ve always been driven by the desire to learn, create, and share knowledge.
                 </p>
               </div>
@@ -686,7 +732,7 @@ export default function Home() {
                 </span>
               </div>
             </div>
-            
+
             {/* Tech Stack & Tools */}
             <div className="lg:col-span-2 space-y-6">
               <div className="bg-slate-50 dark:bg-slate-700 p-6 sm:p-8 rounded-xl shadow-sm border border-slate-200 dark:border-slate-600">
@@ -746,7 +792,12 @@ export default function Home() {
       {/* Timeline Section */}
       <section id="timeline" className="py-16 sm:py-20 lg:py-24 px-4 sm:px-6 lg:px-8 bg-slate-50 dark:bg-slate-900 font-sans scroll-mt-20">
         <div className="max-w-7xl mx-auto">
-          <div className="text-center mb-12 sm:mb-16 lg:mb-20">
+          <div 
+            className={`text-center mb-12 sm:mb-16 lg:mb-20 transition-all duration-1000 ease-out ${
+              scrollAnimations.timelineHeader ? 'animate-fade-in-up' : ''
+            }`}
+            data-scroll-animation="timelineHeader"
+          >
             <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-slate-900 dark:text-white mb-4 sm:mb-6">
               My Journey
             </h2>
@@ -756,7 +807,12 @@ export default function Home() {
             </p>
           </div>
 
-          <div className="relative max-w-6xl mx-auto">
+          <div 
+            className={`relative max-w-6xl mx-auto transition-all duration-1000 ease-out delay-300 ${
+              scrollAnimations.timelineContent ? 'animate-fade-in-up' : ''
+            }`}
+            data-scroll-animation="timelineContent"
+          >
             {/* Main trunk - vertical line with lower z-index */}
             <div className="absolute left-1/2 top-0 w-1 bg-emerald-600 dark:bg-emerald-400 transform -translate-x-1/2 z-0" style={{ height: 'calc(100% - 100px)' }}></div>
 
@@ -767,7 +823,7 @@ export default function Home() {
                 <div className="hidden sm:block absolute right-1/2 top-8 w-8 md:w-12 lg:w-16 xl:w-24 h-0.5 bg-emerald-600 dark:bg-emerald-400 z-0"></div>
                 {/* Junction dot - lower z-index so cards appear on top */}
                 <div className="absolute left-1/2 top-6 w-4 h-4 bg-emerald-600 dark:bg-emerald-400 rounded-full border-4 border-white dark:border-slate-50 transform -translate-x-1/2 z-0"></div>
-                
+
                 <div className="flex justify-start">
                   <div className="w-full max-w-xs sm:max-w-sm md:max-w-md lg:max-w-lg xl:max-w-xl mr-auto pr-4 sm:pr-12 md:pr-16 lg:pr-20 xl:pr-28">
                     <div className="relative z-10 bg-white dark:bg-slate-800 p-4 sm:p-5 md:p-6 rounded-xl shadow-md hover:shadow-lg transition-shadow border-r-4 border-purple-600 dark:border-purple-400">
@@ -798,7 +854,7 @@ export default function Home() {
                 <div className="hidden sm:block absolute left-1/2 top-8 w-8 md:w-12 lg:w-16 xl:w-24 h-0.5 bg-emerald-600 dark:bg-emerald-400 z-0"></div>
                 {/* Junction dot - lower z-index so cards appear on top */}
                 <div className="absolute left-1/2 top-6 w-4 h-4 bg-emerald-600 dark:bg-emerald-400 rounded-full border-4 border-white dark:border-slate-50 transform -translate-x-1/2 z-0"></div>
-                
+
                 <div className="flex justify-end">
                   <div className="w-full max-w-xs sm:max-w-sm md:max-w-md lg:max-w-lg xl:max-w-xl ml-auto pl-4 sm:pl-12 md:pl-16 lg:pl-20 xl:pl-28">
                     <div className="relative z-10 bg-white dark:bg-slate-800 p-4 sm:p-5 md:p-6 rounded-xl shadow-md hover:shadow-lg transition-shadow border-l-4 border-emerald-600 dark:border-emerald-400">
@@ -828,7 +884,7 @@ export default function Home() {
                 <div className="hidden sm:block absolute right-1/2 top-8 w-8 md:w-12 lg:w-16 xl:w-24 h-0.5 bg-emerald-600 dark:bg-emerald-400 z-0"></div>
                 {/* Junction dot - lower z-index so cards appear on top */}
                 <div className="absolute left-1/2 top-6 w-4 h-4 bg-emerald-600 dark:bg-emerald-400 rounded-full border-4 border-white dark:border-slate-50 transform -translate-x-1/2 z-0"></div>
-                
+
                 <div className="flex justify-start">
                   <div className="w-full max-w-xs sm:max-w-sm md:max-w-md lg:max-w-lg xl:max-w-xl mr-auto pr-4 sm:pr-12 md:pr-16 lg:pr-20 xl:pr-28">
                     <div className="relative z-10 bg-white dark:bg-slate-800 p-4 sm:p-5 md:p-6 rounded-xl shadow-md hover:shadow-lg transition-shadow border-r-4 border-emerald-600 dark:border-emerald-400">
@@ -858,7 +914,7 @@ export default function Home() {
                 <div className="hidden sm:block absolute left-1/2 top-8 w-8 md:w-12 lg:w-16 xl:w-24 h-0.5 bg-emerald-600 dark:bg-emerald-400 z-0"></div>
                 {/* Junction dot - lower z-index so cards appear on top */}
                 <div className="absolute left-1/2 top-6 w-4 h-4 bg-emerald-600 dark:bg-emerald-400 rounded-full border-4 border-white dark:border-slate-50 transform -translate-x-1/2 z-0"></div>
-                
+
                 <div className="flex justify-end">
                   <div className="w-full max-w-xs sm:max-w-sm md:max-w-md lg:max-w-lg xl:max-w-xl ml-auto pl-4 sm:pl-12 md:pl-16 lg:pl-20 xl:pl-28">
                     <div className="relative z-10 bg-white dark:bg-slate-800 p-4 sm:p-5 md:p-6 rounded-xl shadow-md hover:shadow-lg transition-shadow border-l-4 border-blue-600 dark:border-blue-400">
@@ -888,7 +944,7 @@ export default function Home() {
                 <div className="hidden sm:block absolute right-1/2 top-8 w-8 md:w-12 lg:w-16 xl:w-24 h-0.5 bg-emerald-600 dark:bg-emerald-400 z-0"></div>
                 {/* Junction dot - lower z-index so cards appear on top */}
                 <div className="absolute left-1/2 top-6 w-4 h-4 bg-emerald-600 dark:bg-emerald-400 rounded-full border-4 border-white dark:border-slate-50 transform -translate-x-1/2 z-0"></div>
-                
+
                 <div className="flex justify-start">
                   <div className="w-full max-w-xs sm:max-w-sm md:max-w-md lg:max-w-lg xl:max-w-xl mr-auto pr-4 sm:pr-12 md:pr-16 lg:pr-20 xl:pr-28">
                     <div className="relative z-10 bg-white dark:bg-slate-800 p-4 sm:p-5 md:p-6 rounded-xl shadow-md hover:shadow-lg transition-shadow border-r-4 border-orange-600 dark:border-orange-400">
@@ -917,7 +973,7 @@ export default function Home() {
                 <div className="hidden sm:block absolute left-1/2 top-8 w-8 md:w-12 lg:w-16 xl:w-24 h-0.5 bg-emerald-600 dark:bg-emerald-400 z-0"></div>
                 {/* Junction dot - lower z-index so cards appear on top */}
                 <div className="absolute left-1/2 top-6 w-4 h-4 bg-emerald-600 dark:bg-emerald-400 rounded-full border-4 border-white dark:border-slate-50 transform -translate-x-1/2 z-0"></div>
-                
+
                 <div className="flex justify-end">
                   <div className="w-full max-w-xs sm:max-w-sm md:max-w-md lg:max-w-lg xl:max-w-xl ml-auto pl-4 sm:pl-12 md:pl-16 lg:pl-20 xl:pl-28">
                     <div className="relative z-10 bg-white dark:bg-slate-800 p-4 sm:p-5 md:p-6 rounded-xl shadow-md hover:shadow-lg transition-shadow border-l-4 border-pink-600 dark:border-pink-400">
@@ -965,7 +1021,12 @@ export default function Home() {
       {/* Contact Section */}
       <section id="contact" className="py-20 px-4 sm:px-6 lg:px-8 bg-white dark:bg-slate-800 font-sans scroll-mt-20">
         <div className="max-w-6xl mx-auto">
-          <div className="text-center mb-16">
+          <div 
+            className={`text-center mb-16 transition-all duration-1000 ease-out ${
+              scrollAnimations.contactHeader ? 'animate-fade-in-up' : ''
+            }`}
+            data-scroll-animation="contactHeader"
+          >
             <h2 className="text-3xl md:text-4xl font-bold text-slate-900 dark:text-white mb-6">
               Let&apos;s Connect
             </h2>
@@ -976,7 +1037,12 @@ export default function Home() {
           </div>
 
           {/* Professional Contact */}
-          <div className="mb-16">
+          <div 
+            className={`mb-16 transition-all duration-1000 ease-out delay-300 ${
+              scrollAnimations.contactCards ? 'animate-fade-in-up' : ''
+            }`}
+            data-scroll-animation="contactCards"
+          >
             <h3 className="text-2xl font-bold text-slate-900 dark:text-white mb-8 text-center flex items-center justify-center">
               <svg className="w-6 h-6 text-emerald-600 dark:text-emerald-400 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <rect x="4" y="8" width="16" height="12" rx="2" ry="2" strokeWidth="2"/>
@@ -997,12 +1063,12 @@ export default function Home() {
                 <p className="text-slate-600 dark:text-slate-300 mb-6 text-sm flex-grow">
                   Drop me a line for project inquiries or collaboration opportunities
                 </p>
-                <a 
+                <a
                   href="mailto:contact.nguyensynguyen@gmail.com"
-                  className="inline-flex items-center justify-center w-full bg-emerald-600 hover:bg-emerald-700 text-white px-6 py-3 rounded-lg font-medium transition-all duration-300 group-hover:scale-105 h-12"
+                  className="inline-flex items-center justify-center w-full bg-emerald-600 hover:bg-emerald-700 hover:scale-105 text-white px-6 py-3 rounded-lg font-medium transition-all duration-300 h-12"
                 >
                   <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8" />
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
                   </svg>
                   Send Email
                 </a>
@@ -1019,14 +1085,14 @@ export default function Home() {
                 <p className="text-slate-600 dark:text-slate-300 mb-6 text-sm flex-grow">
                   Connect with me for professional networking and career discussions
                 </p>
-                <a 
+                <a
                   href="https://linkedin.com/in/nguyensynguyen"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center justify-center w-full bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg font-medium transition-all duration-300 group-hover:scale-105 h-12"
+                  className="inline-flex items-center justify-center w-full bg-blue-600 hover:bg-blue-700 hover:scale-105 text-white px-6 py-3 rounded-lg font-medium transition-all duration-300 h-12"
                 >
-                  <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002-2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                  <svg className="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M19 3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2zM9 17H6.5v-7H9v7zM7.75 8.5c-.69 0-1.25-.56-1.25-1.25s.56-1.25 1.25-1.25 1.25.56 1.25 1.25-.56 1.25-1.25 1.25zM18 17h-2.5v-3.5c0-.83-.67-1.5-1.5-1.5s-1.5.67-1.5 1.5V17H10v-7h2.5v1.5c.5-.75 1.5-1.5 2.5-1.5 1.66 0 3 1.34 3 3V17z"/>
                   </svg>
                   Connect
                 </a>
@@ -1043,14 +1109,14 @@ export default function Home() {
                 <p className="text-slate-600 dark:text-slate-300 mb-6 text-sm flex-grow">
                   Explore my projects and see what I&apos;ve been building lately
                 </p>
-                <a 
+                <a
                   href="https://github.com/KaitoJD"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center justify-center w-full bg-gray-700 hover:bg-gray-800 dark:bg-gray-600 dark:hover:bg-gray-700 text-white px-6 py-3 rounded-lg font-medium transition-all duration-300 group-hover:scale-105 h-12"
+                  className="inline-flex items-center justify-center w-full bg-gray-700 hover:bg-gray-800 hover:scale-105 dark:bg-gray-600 dark:hover:bg-gray-700 text-white px-6 py-3 rounded-lg font-medium transition-all duration-300 h-12"
                 >
-                  <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002-2h-10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                  <svg className="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/>
                   </svg>
                   View Profile
                 </a>
@@ -1082,12 +1148,12 @@ export default function Home() {
                   <p className="text-sm font-mono bg-slate-200 dark:bg-slate-600 text-slate-800 dark:text-slate-200 px-3 py-2 rounded">
                     @_notNguyen
                   </p>
-                  <button 
+                  <button
                     onClick={copyDiscordUsername}
-                    className="inline-flex items-center justify-center w-full bg-indigo-600 hover:bg-indigo-700 text-white px-6 py-3 rounded-lg font-medium transition-all duration-300 group-hover:scale-105 h-12"
+                    className="inline-flex items-center justify-center w-full bg-indigo-600 hover:bg-indigo-700 hover:scale-105 text-white px-6 py-3 rounded-lg font-medium transition-all duration-300 h-12"
                   >
-                    <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" />
+                    <svg className="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 24 24">
+                      <path d="M16 3H4v13h12l4 4V3zm-3 9H7v-2h6v2zm0-3H7V7h6v2z"/>
                     </svg>
                     Copy Username
                   </button>
@@ -1105,14 +1171,14 @@ export default function Home() {
                 <p className="text-slate-600 dark:text-slate-300 mb-6 text-sm flex-grow">
                   Connect with me on Facebook for personal updates and conversations
                 </p>
-                <a 
+                <a
                   href="https://facebook.com/kaito.dev"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center justify-center w-full bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg font-medium transition-all duration-300 group-hover:scale-105 h-12"
+                  className="inline-flex items-center justify-center w-full bg-blue-600 hover:bg-blue-700 hover:scale-105 text-white px-6 py-3 rounded-lg font-medium transition-all duration-300 h-12"
                 >
-                  <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002-2h-10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                  <svg className="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
                   </svg>
                   Visit Profile
                 </a>
@@ -1130,15 +1196,14 @@ export default function Home() {
                 <p className="text-slate-600 dark:text-slate-300 mb-6 text-sm flex-grow">
                   Challenge me to a game of chess or check out my tournament history
                 </p>
-                <a 
+                <a
                   href="https://chess.com/member/nsNguyen"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center justify-center w-full bg-amber-600 hover:bg-amber-700 text-white px-6 py-3 rounded-lg font-medium transition-all duration-300 group-hover:scale-105 h-12"
+                  className="inline-flex items-center justify-center w-full bg-amber-600 hover:bg-amber-700 hover:scale-105 text-white px-6 py-3 rounded-lg font-medium transition-all duration-300 h-12"
                 >
-                  {/* Chess Board Icon */}
                   <svg className="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 24 24">
-                    <path d="M3 3h3v3H3V3zm3 3h3v3H6V6zm3 3h3v3H9V9zm3 3h3v3h-3v-3zm3 3h3v3h-3v-3zm0-6h3v3h-3V6zm0-3h3v3h-3V3zM15 6h3v3h-3V6zm-3-3h3v3h-3V3zm-3 0h3v3H9V3zM6 9h3v3H6V9zm-3 3h3v3H3v-3zm0 3h3v3H3v-3zm3 0h3v3H6v-3zm3 0h3v3H9v-3zm6 0h3v3h-3v-3zM15 18h3v3h-3v-3zm3-6h3v3h-3v-3zM3 18h18v3H3v-3z"/>
+                    <path d="M12 2c.5 0 1 .4 1 1v1h1c.5 0 1 .4 1 1s-.4 1-1 1h-1v.5L14.5 8H16c.5 0 1 .4 1 1s-.4 1-1 1h-.5L17 11.5c.3.3.3.8 0 1.1l-1.4 1.4c-.3.3-.8.3-1.1 0l-.5-.5V15h2c.5 0 1 .4 1 1v1H7v-1c0-.5.4-1 1-1h2v-1.5l-.5.5c-.3.3-.8.3-1.1 0L7 13.6c-.3-.3-.3-.8 0-1.1L8.5 11H8c-.5 0-1-.4-1-1s.4-1 1-1h1.5L11 6.5V6h-1c-.5 0-1-.4-1-1s.4-1 1-1h1V3c0-.5.4-1 1-1zm0 16c-3.3 0-6 1.3-6 3v1h12v-1c0-1.7-2.7-3-6-3z"/>
                   </svg>
                   Play Chess
                 </a>
@@ -1152,11 +1217,11 @@ export default function Home() {
               Ready to Start a Project?
             </h3>
             <p className="text-slate-600 dark:text-slate-300 mb-8 max-w-2xl mx-auto">
-              I&apos;m always excited to work on innovative projects and help bring ideas to life. 
+              I&apos;m always excited to work on innovative projects and help bring ideas to life.
               Let&apos;s discuss how we can collaborate!
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <a 
+              <a
                 href="mailto:contact.nguyensynguyen@gmail.com"
                 className="bg-emerald-600 hover:bg-emerald-700 text-white px-8 py-4 rounded-lg font-semibold transition-all duration-300 inline-flex items-center justify-center group"
               >
@@ -1165,14 +1230,14 @@ export default function Home() {
                 </svg>
                 Send Me an Email
               </a>
-              <a 
+              <a
                 href="https://linkedin.com/in/nguyensynguyen"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="border-2 border-emerald-600 text-emerald-600 hover:bg-emerald-600 hover:text-white dark:border-emerald-400 dark:text-emerald-400 dark:hover:bg-emerald-400 dark:hover:text-slate-900 px-8 py-4 rounded-lg font-semibold transition-all duration-300 inline-flex items-center justify-center group"
               >
-                <svg className="w-5 h-5 mr-2 group-hover:scale-110 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8h2a2 2 0 012 2v6a2 2 0 01-2 2h-2v4l-4-4H9a2 2 0 01-2-2v-6a2 2 0 012-2h2v-1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+                <svg className="w-5 h-5 mr-2 group-hover:scale-110 transition-transform" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
                 </svg>
                 Let&apos;s Chat on LinkedIn
               </a>
@@ -1182,7 +1247,12 @@ export default function Home() {
       </section>
 
       {/* Footer */}
-      <footer className="bg-slate-900 text-white py-8 px-4 sm:px-6 lg:px-8">
+      <footer 
+        className={`bg-slate-900 text-white py-8 px-4 sm:px-6 lg:px-8 transition-all duration-1000 ease-out ${
+          scrollAnimations.footer ? 'animate-fade-in-up' : ''
+        }`}
+        data-scroll-animation="footer"
+      >
         <div className="max-w-6xl mx-auto text-center">
           <p className="text-slate-400">
             © {new Date().getFullYear()} Nguyen Sy Nguyen. All rights reserved.
