@@ -443,9 +443,39 @@ body::-webkit-scrollbar,
   animation-delay: 0.5s;
 }
 
-/* Initial state for scroll animations - hidden until animated */
+/* Initial state for scroll animations - optimized to prevent layout shifts */
 [data-scroll-animation] {
   opacity: 0;
-  transform: translateY(40px);
+  transform: translate3d(0, 30px, 0);
   transition: none;
+  will-change: opacity, transform;
+}
+
+/* Tech Stack Vertical Scroll Styles - Hidden Scrollbar */
+.tech-scroll-container {
+  scroll-behavior: smooth;
+  /* Hide scrollbar for WebKit browsers */
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* Internet Explorer/Edge */
+}
+
+/* Hide scrollbar for WebKit browsers (Chrome, Safari, Edge) */
+.tech-scroll-container::-webkit-scrollbar {
+  width: 0px;
+  background: transparent;
+  display: none;
+}
+
+.tech-scroll-container::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.tech-scroll-container::-webkit-scrollbar-thumb {
+  background: transparent;
+}
+
+/* Firefox - completely hide scrollbar */
+.tech-scroll-container {
+  scrollbar-width: none;
 }
