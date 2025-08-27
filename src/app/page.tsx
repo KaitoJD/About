@@ -156,6 +156,13 @@ export default function Home() {
     }, 500); // Small delay to show background first
   }, [managedSetTimeout]);
 
+  // Helper function to generate random typing speed
+  const getRandomTypingSpeed = useCallback((baseSpeed: number, variation: number = 0.5) => {
+    // Create random variation between -variation and +variation
+    const randomFactor = 1 + (Math.random() - 0.5) * 2 * variation;
+    return Math.max(baseSpeed * randomFactor, 20); // Minimum 20ms to avoid too fast typing
+  }, []);
+
   // Animation sequence effect
   useEffect(() => {
     if (!showTyping) return;
@@ -167,15 +174,19 @@ export default function Home() {
       if (currentIndex <= fullText.length) {
         setTypedText(fullText.slice(0, currentIndex));
         currentIndex++;
-        managedSetTimeout(typeTitle, 80); // Typing speed
+        // Random typing speed between 50-120ms for title (base 80ms ± 50%)
+        const randomSpeed = getRandomTypingSpeed(80, 0.5);
+        managedSetTimeout(typeTitle, randomSpeed);
       } else {
         // Title completed, pause then start description
         setIsTypingTitle(false);
+        // Random pause between 600-1000ms
+        const randomPause = getRandomTypingSpeed(800, 0.25);
         managedSetTimeout(() => {
           setIsTypingDescription(true);
           currentIndex = 0; // Reset for description
           typeDescription();
-        }, 800);
+        }, randomPause);
       }
     };
 
@@ -184,7 +195,9 @@ export default function Home() {
       if (currentIndex <= descriptionText.length) {
         setTypedDescription(descriptionText.slice(0, currentIndex));
         currentIndex++;
-        managedSetTimeout(typeDescription, 50); // Slightly faster for description
+        // Random typing speed between 30-80ms for description (base 50ms ± 60%)
+        const randomSpeed = getRandomTypingSpeed(50, 0.6);
+        managedSetTimeout(typeDescription, randomSpeed);
       } else {
         // Description completed
         setIsTypingDescription(false);
@@ -199,7 +212,7 @@ export default function Home() {
     };
 
     typeTitle();
-  }, [showTyping, fullText, descriptionText, managedSetTimeout]);
+  }, [showTyping, fullText, descriptionText, managedSetTimeout, getRandomTypingSpeed]);
 
   // Show header after buttons
   useEffect(() => {
