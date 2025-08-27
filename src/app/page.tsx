@@ -156,6 +156,13 @@ export default function Home() {
     }, 500); // Small delay to show background first
   }, [managedSetTimeout]);
 
+  // Helper function to generate random typing speed
+  const getRandomTypingSpeed = useCallback((baseSpeed: number, variation: number = 0.5) => {
+    // Create random variation between -variation and +variation
+    const randomFactor = 1 + (Math.random() - 0.5) * 2 * variation;
+    return Math.max(baseSpeed * randomFactor, 20); // Minimum 20ms to avoid too fast typing
+  }, []);
+
   // Animation sequence effect
   useEffect(() => {
     if (!showTyping) return;
@@ -167,15 +174,27 @@ export default function Home() {
       if (currentIndex <= fullText.length) {
         setTypedText(fullText.slice(0, currentIndex));
         currentIndex++;
-        managedSetTimeout(typeTitle, 80); // Typing speed
+        
+        // Special pause after "Hi!" for natural effect
+        if (currentIndex === 4 && fullText.slice(0, 4) === "Hi! ") {
+          // Longer pause after "Hi!" (960-1200ms)
+          const pauseAfterHi = getRandomTypingSpeed(1200, 0.2);
+          managedSetTimeout(typeTitle, pauseAfterHi);
+        } else {
+          // Regular typing speed between 60-120ms for title (base 90ms ± 33%) ≈ 130 WPM
+          const randomSpeed = getRandomTypingSpeed(90, 0.33);
+          managedSetTimeout(typeTitle, randomSpeed);
+        }
       } else {
         // Title completed, pause then start description
         setIsTypingTitle(false);
+        // Random pause between 600-900ms
+        const randomPause = getRandomTypingSpeed(750, 0.2);
         managedSetTimeout(() => {
           setIsTypingDescription(true);
           currentIndex = 0; // Reset for description
           typeDescription();
-        }, 800);
+        }, randomPause);
       }
     };
 
@@ -184,7 +203,9 @@ export default function Home() {
       if (currentIndex <= descriptionText.length) {
         setTypedDescription(descriptionText.slice(0, currentIndex));
         currentIndex++;
-        managedSetTimeout(typeDescription, 50); // Slightly faster for description
+        // Random typing speed between 50-100ms for description (base 75ms ± 33%) ≈ 160 WPM
+        const randomSpeed = getRandomTypingSpeed(75, 0.33);
+        managedSetTimeout(typeDescription, randomSpeed);
       } else {
         // Description completed
         setIsTypingDescription(false);
@@ -199,7 +220,7 @@ export default function Home() {
     };
 
     typeTitle();
-  }, [showTyping, fullText, descriptionText, managedSetTimeout]);
+  }, [showTyping, fullText, descriptionText, managedSetTimeout, getRandomTypingSpeed]);
 
   // Show header after buttons
   useEffect(() => {
