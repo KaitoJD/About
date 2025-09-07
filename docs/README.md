@@ -22,14 +22,6 @@ Welcome to the comprehensive documentation for the Portfolio project. Below you'
 4. **Customize**: [Customization Guide](customization.md) - Make it your own
 5. **Deep Dive**: [Architecture Guide](architecture.md) - Understand the technical implementation
 
-## Recent Documentation Updates
-
-### Version 2.0.0
-- **Restructured**: Split large README into focused documentation files
-- **Enhanced**: Added detailed installation and deployment guides
-- **Updated**: Reflected removal of scroll animations
-- **Improved**: Better organization and navigation
-
 ## Quick Reference
 
 ### Common Tasks
@@ -47,17 +39,6 @@ npm run build:github # GitHub Pages build
 npm run lint       # Code linting
 ```
 
-## Contributing to Documentation
-
-Found an issue or want to improve the documentation?
-
-1. Fork the repository
-2. Update the relevant documentation file
-3. Test your changes locally
-4. Submit a pull request with a clear description
-
 ## Need Help?
 
 - **Issues**: [GitHub Issues](https://github.com/KaitoJD/About/issues)
-- **Discussions**: [GitHub Discussions](https://github.com/KaitoJD/About/discussions)
-- **Contact**: Check the [Contact section](../README.md#contact) in the main README
