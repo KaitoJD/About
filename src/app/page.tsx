@@ -32,8 +32,7 @@ export default function Home() {
   const [showCopyNotification, setShowCopyNotification] = useState(false);
   const [isNotificationVisible, setIsNotificationVisible] = useState(false);
   
-  // Scroll animations state
-  const [scrollAnimations, setScrollAnimations] = useState<Record<string, boolean>>({});
+
   
   const mobileMenuRef = useRef<HTMLDivElement>(null);
   const mobileMenuButtonRef = useRef<HTMLButtonElement>(null);
@@ -256,38 +255,7 @@ export default function Home() {
     };
   }, [clearAllTimeouts]);
 
-  // Setup scroll animations when intro animations complete
-  useEffect(() => {
-    if (!isAnimationsComplete) return;
 
-    const observerOptions = {
-      root: null,
-      rootMargin: '-100px 0px -100px 0px',
-      threshold: 0.1
-    };
-
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          const animationId = entry.target.getAttribute('data-scroll-animation');
-          if (animationId) {
-            setScrollAnimations(prev => ({
-              ...prev,
-              [animationId]: true
-            }));
-          }
-        }
-      });
-    }, observerOptions);
-
-    // Observe all elements with scroll animation data attributes
-    const elementsToObserve = document.querySelectorAll('[data-scroll-animation]');
-    elementsToObserve.forEach((el) => observer.observe(el));
-
-    return () => {
-      observer.disconnect();
-    };
-  }, [isAnimationsComplete]);
 
   // Block interactions until animations are complete
   useEffect(() => {
@@ -601,10 +569,7 @@ export default function Home() {
       <section id="about" className="py-16 sm:py-20 lg:py-24 px-4 sm:px-6 lg:px-8 bg-white dark:bg-slate-800 font-sans scroll-mt-20">
         <div className="max-w-7xl mx-auto">
           <div 
-            className={`text-center mb-12 sm:mb-16 lg:mb-20 transition-all duration-1000 ease-out ${
-              scrollAnimations.aboutHeader ? 'animate-fade-in-up' : ''
-            }`}
-            data-scroll-animation="aboutHeader"
+            className="text-center mb-12 sm:mb-16 lg:mb-20 transition-all duration-1000 ease-out"
           >
             <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-slate-900 dark:text-white mb-4 sm:mb-6">
               About Me
@@ -617,10 +582,7 @@ export default function Home() {
 
           {/* Main Content Grid */}
           <div 
-            className={`grid lg:grid-cols-5 gap-8 sm:gap-12 lg:gap-16 transition-all duration-1000 ease-out delay-300 ${
-              scrollAnimations.aboutContent ? 'animate-fade-in-up' : ''
-            }`}
-            data-scroll-animation="aboutContent"
+            className="grid lg:grid-cols-5 gap-8 sm:gap-12 lg:gap-16 transition-all duration-1000 ease-out delay-300"
           >
             {/* Personal Story & Background */}
             <div className="lg:col-span-3 space-y-6 sm:space-y-8">
@@ -814,10 +776,7 @@ export default function Home() {
       <section id="timeline" className="py-16 sm:py-20 lg:py-24 px-4 sm:px-6 lg:px-8 bg-slate-50 dark:bg-slate-900 font-sans scroll-mt-20">
         <div className="max-w-7xl mx-auto">
           <div 
-            className={`text-center mb-12 sm:mb-16 lg:mb-20 transition-all duration-1000 ease-out ${
-              scrollAnimations.timelineHeader ? 'animate-fade-in-up' : ''
-            }`}
-            data-scroll-animation="timelineHeader"
+            className="text-center mb-12 sm:mb-16 lg:mb-20 transition-all duration-1000 ease-out"
           >
             <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-slate-900 dark:text-white mb-4 sm:mb-6">
               My Journey
@@ -829,10 +788,7 @@ export default function Home() {
           </div>
 
           <div 
-            className={`relative max-w-6xl mx-auto transition-all duration-1000 ease-out delay-300 ${
-              scrollAnimations.timelineContent ? 'animate-fade-in-up' : ''
-            }`}
-            data-scroll-animation="timelineContent"
+            className="relative max-w-6xl mx-auto transition-all duration-1000 ease-out delay-300"
           >
             {/* Main trunk - vertical line with lower z-index */}
             <div className="absolute left-1/2 top-0 w-1 bg-emerald-600 dark:bg-emerald-400 transform -translate-x-1/2 z-0" style={{ height: 'calc(100% - 100px)' }}></div>
@@ -1043,10 +999,7 @@ export default function Home() {
       <section id="contact" className="py-20 px-4 sm:px-6 lg:px-8 bg-white dark:bg-slate-800 font-sans scroll-mt-20">
         <div className="max-w-6xl mx-auto">
           <div 
-            className={`text-center mb-16 transition-all duration-1000 ease-out ${
-              scrollAnimations.contactHeader ? 'animate-fade-in-up' : ''
-            }`}
-            data-scroll-animation="contactHeader"
+            className="text-center mb-16 transition-all duration-1000 ease-out"
           >
             <h2 className="text-3xl md:text-4xl font-bold text-slate-900 dark:text-white mb-6">
               Let&apos;s Connect
@@ -1059,10 +1012,7 @@ export default function Home() {
 
           {/* Professional Contact */}
           <div 
-            className={`mb-16 transition-all duration-1000 ease-out delay-300 ${
-              scrollAnimations.contactCards ? 'animate-fade-in-up' : ''
-            }`}
-            data-scroll-animation="contactCards"
+            className="mb-16 transition-all duration-1000 ease-out delay-300"
           >
             <h3 className="text-2xl font-bold text-slate-900 dark:text-white mb-8 text-center flex items-center justify-center">
               <svg className="w-6 h-6 text-emerald-600 dark:text-emerald-400 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -1269,10 +1219,7 @@ export default function Home() {
 
       {/* Footer */}
       <footer 
-        className={`bg-slate-900 text-white py-8 px-4 sm:px-6 lg:px-8 transition-all duration-1000 ease-out ${
-          scrollAnimations.footer ? 'animate-fade-in-up' : ''
-        }`}
-        data-scroll-animation="footer"
+        className="bg-slate-900 text-white py-8 px-4 sm:px-6 lg:px-8 transition-all duration-1000 ease-out"
       >
         <div className="max-w-6xl mx-auto text-center">
           <p className="text-slate-400">
