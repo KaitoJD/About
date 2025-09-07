@@ -32,7 +32,7 @@ npm run build:github
 **Automatic Deployment:**
 1. Push changes to `main` or `master` branch
 2. GitHub Actions workflow automatically triggers
-3. Site deploys to `https://kaitojd.github.io/About/`
+3. Site deploys to `https://yourusername.github.io/yourrepository/`
 
 **Manual Deployment:**
 ```bash
