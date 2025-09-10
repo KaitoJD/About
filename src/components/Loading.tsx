@@ -8,13 +8,13 @@ interface LoadingProps {
 
 // Loading configuration constants
 const LOADING_CONFIG = {
-  PROGRESS_INTERVAL: 200,
-  DONE_DISPLAY_DURATION: 1000,
+  PROGRESS_INTERVAL: 100,
+  DONE_DISPLAY_DURATION: 500,
   FAST_PROGRESS_THRESHOLD: 70,
-  FAST_PROGRESS_MIN: 2,
-  FAST_PROGRESS_MAX: 10,
-  SLOW_PROGRESS_MIN: 0.5,
-  SLOW_PROGRESS_MAX: 2.5,
+  FAST_PROGRESS_MIN: 3,
+  FAST_PROGRESS_MAX: 15,
+  SLOW_PROGRESS_MIN: 1,
+  SLOW_PROGRESS_MAX: 4,
 } as const;
 
 // Calculate progress increment based on current progress

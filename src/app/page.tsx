@@ -699,7 +699,7 @@ export default function Home() {
                 </span>
                 <span className="bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-200 px-3 sm:px-4 py-2 rounded-full text-xs sm:text-sm font-medium flex items-center">
                   <span className="w-2 h-2 bg-blue-600 rounded-full mr-2"></span>
-                  Full-Stack Developer
+                  Front-end Developer
                 </span>
                 <span className="bg-purple-100 dark:bg-purple-900 text-purple-800 dark:text-purple-200 px-3 sm:px-4 py-2 rounded-full text-xs sm:text-sm font-medium flex items-center">
                   <span className="w-2 h-2 bg-purple-600 rounded-full mr-2"></span>
