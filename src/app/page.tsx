@@ -202,8 +202,9 @@ export default function Home() {
       if (currentIndex <= descriptionText.length) {
         setTypedDescription(descriptionText.slice(0, currentIndex));
         currentIndex++;
-        // Random typing speed between 50-100ms for description (base 75ms ± 33%) ≈ 160 WPM
-        const randomSpeed = getRandomTypingSpeed(75, 0.33);
+        
+        // Random typing speed for natural feel - 120-130 WPM with more variation (base 48ms ± 50%)
+        const randomSpeed = getRandomTypingSpeed(70, 0.5);
         managedSetTimeout(typeDescription, randomSpeed);
       } else {
         // Description completed
