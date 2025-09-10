@@ -10,7 +10,7 @@
 
 ## Live Demo
 
-**[View Portfolio](https://kaitojd.github.io/About/)**
+**[View Portfolio](https://about.kaitojd.me/)**
 
 ## Key Features
 

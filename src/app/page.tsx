@@ -739,15 +739,15 @@ export default function Home() {
                 <div className="space-y-2">
                   <div className="flex items-center text-sm text-slate-600 dark:text-slate-300">
                     <span className="w-2 h-2 bg-purple-500 rounded-full mr-3"></span>
-                    Advanced React Patterns & State Management
+                    Advanced Java Programming & Spring Framework
                   </div>
                   <div className="flex items-center text-sm text-slate-600 dark:text-slate-300">
                     <span className="w-2 h-2 bg-blue-500 rounded-full mr-3"></span>
-                    Cloud Architecture & DevOps Practices
+                    Game Design & Development with Unity
                   </div>
                   <div className="flex items-center text-sm text-slate-600 dark:text-slate-300">
                     <span className="w-2 h-2 bg-emerald-500 rounded-full mr-3"></span>
-                    Advanced Java and Spring Boot
+                    Data Structures & Algorithms
                   </div>
                 </div>
               </div>
@@ -764,7 +764,7 @@ export default function Home() {
                   <p>🏆 Won multiple provincial physics competitions</p>
                   <p>♟️ Chess enthusiast with tournament wins</p>
                   <p>🌟 Discord community administrator at FCoder</p>
-                  <p>💡 Enjoys turning complex problems into elegant solutions</p>
+                  <p>💡 All my projects stem from my own real-life needs</p>
                 </div>
               </div>
             </div>
@@ -1117,7 +1117,7 @@ export default function Home() {
                 </p>
                 <div className="space-y-2">
                   <p className="text-sm font-mono bg-slate-200 dark:bg-slate-600 text-slate-800 dark:text-slate-200 px-3 py-2 rounded">
-                    @_notNguyen
+                    @_notnguyen
                   </p>
                   <button
                     onClick={copyDiscordUsername}
