@@ -202,8 +202,9 @@ export default function Home() {
       if (currentIndex <= descriptionText.length) {
         setTypedDescription(descriptionText.slice(0, currentIndex));
         currentIndex++;
-        // Random typing speed between 50-100ms for description (base 75ms ± 33%) ≈ 160 WPM
-        const randomSpeed = getRandomTypingSpeed(75, 0.33);
+        
+        // Random typing speed for natural feel - 120-130 WPM with more variation (base 48ms ± 50%)
+        const randomSpeed = getRandomTypingSpeed(70, 0.5);
         managedSetTimeout(typeDescription, randomSpeed);
       } else {
         // Description completed
@@ -699,7 +700,7 @@ export default function Home() {
                 </span>
                 <span className="bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-200 px-3 sm:px-4 py-2 rounded-full text-xs sm:text-sm font-medium flex items-center">
                   <span className="w-2 h-2 bg-blue-600 rounded-full mr-2"></span>
-                  Full-Stack Developer
+                  Front-end Developer
                 </span>
                 <span className="bg-purple-100 dark:bg-purple-900 text-purple-800 dark:text-purple-200 px-3 sm:px-4 py-2 rounded-full text-xs sm:text-sm font-medium flex items-center">
                   <span className="w-2 h-2 bg-purple-600 rounded-full mr-2"></span>
@@ -739,15 +740,15 @@ export default function Home() {
                 <div className="space-y-2">
                   <div className="flex items-center text-sm text-slate-600 dark:text-slate-300">
                     <span className="w-2 h-2 bg-purple-500 rounded-full mr-3"></span>
-                    Advanced React Patterns & State Management
+                    Advanced Java Programming & Spring Framework
                   </div>
                   <div className="flex items-center text-sm text-slate-600 dark:text-slate-300">
                     <span className="w-2 h-2 bg-blue-500 rounded-full mr-3"></span>
-                    Cloud Architecture & DevOps Practices
+                    Game Design & Development with Unity
                   </div>
                   <div className="flex items-center text-sm text-slate-600 dark:text-slate-300">
                     <span className="w-2 h-2 bg-emerald-500 rounded-full mr-3"></span>
-                    Advanced Java and Spring Boot
+                    Data Structures & Algorithms
                   </div>
                 </div>
               </div>
@@ -764,7 +765,7 @@ export default function Home() {
                   <p>🏆 Won multiple provincial physics competitions</p>
                   <p>♟️ Chess enthusiast with tournament wins</p>
                   <p>🌟 Discord community administrator at FCoder</p>
-                  <p>💡 Enjoys turning complex problems into elegant solutions</p>
+                  <p>💡 All my projects stem from my own real-life needs</p>
                 </div>
               </div>
             </div>
@@ -1117,7 +1118,7 @@ export default function Home() {
                 </p>
                 <div className="space-y-2">
                   <p className="text-sm font-mono bg-slate-200 dark:bg-slate-600 text-slate-800 dark:text-slate-200 px-3 py-2 rounded">
-                    @_notNguyen
+                    @_notnguyen
                   </p>
                   <button
                     onClick={copyDiscordUsername}

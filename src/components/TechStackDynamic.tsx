@@ -21,13 +21,8 @@ import {
   SiC,
   SiCplusplus,
   SiVite,
-  SiIntellijidea,
-  SiWebstorm,
-  SiClion,
   SiNotion
 } from 'react-icons/si';
-
-import { VscVscode } from 'react-icons/vsc';
 
 interface TechItem {
   name: string;
@@ -65,12 +60,6 @@ const techStack: TechItem[] = [
   
   // Backend & Runtime
   { name: 'Node.js', icon: FaNodeJs, color: '#339933', category: 'Backend' },
-  
-  // Development Tools & IDEs
-  { name: 'VS Code', icon: VscVscode, color: '#007ACC', category: 'Tools' },
-  { name: 'IntelliJ', icon: SiIntellijidea, color: '#000000', category: 'Tools' },
-  { name: 'WebStorm', icon: SiWebstorm, color: '#000000', category: 'Tools' },
-  { name: 'CLion', icon: SiClion, color: '#000000', category: 'Tools' },
   
   // Version Control & Collaboration
   { name: 'Git', icon: FaGitAlt, color: '#F05032', category: 'Tools' },
