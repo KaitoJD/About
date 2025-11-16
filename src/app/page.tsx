@@ -664,7 +664,7 @@ export default function Home() {
                         <div className="w-2 h-2 bg-emerald-500 rounded-full"></div>
                         <div className="w-2 h-2 bg-emerald-500 rounded-full"></div>
                         <div className="w-2 h-2 bg-emerald-500 rounded-full"></div>
-                        <div className="w-2 h-2 bg-emerald-500 rounded-full"></div>
+                        <div className="w-2 h-2 bg-slate-300 dark:bg-slate-600 rounded-full"></div>
                         <div className="w-2 h-2 bg-slate-300 dark:bg-slate-600 rounded-full"></div>
                       </div>
                     </div>
@@ -674,7 +674,7 @@ export default function Home() {
                         <div className="w-2 h-2 bg-blue-500 rounded-full"></div>
                         <div className="w-2 h-2 bg-blue-500 rounded-full"></div>
                         <div className="w-2 h-2 bg-blue-500 rounded-full"></div>
-                        <div className="w-2 h-2 bg-blue-500 rounded-full"></div>
+                        <div className="w-2 h-2 bg-slate-300 dark:bg-slate-600 rounded-full"></div>
                         <div className="w-2 h-2 bg-slate-300 dark:bg-slate-600 rounded-full"></div>
                       </div>
                     </div>
@@ -683,7 +683,7 @@ export default function Home() {
                       <div className="flex space-x-1">
                         <div className="w-2 h-2 bg-purple-500 rounded-full"></div>
                         <div className="w-2 h-2 bg-purple-500 rounded-full"></div>
-                        <div className="w-2 h-2 bg-purple-500 rounded-full"></div>
+                        <div className="w-2 h-2 bg-slate-300 dark:bg-slate-600 rounded-full"></div>
                         <div className="w-2 h-2 bg-slate-300 dark:bg-slate-600 rounded-full"></div>
                         <div className="w-2 h-2 bg-slate-300 dark:bg-slate-600 rounded-full"></div>
                       </div>
