@@ -30,7 +30,7 @@ npm run build:github
 ### GitHub Pages (Current)
 
 **Automatic Deployment:**
-1. Push changes to `main` or `master` branch
+1. Push changes to `master` branch
 2. GitHub Actions workflow automatically triggers
 3. Site deploys to `https://yourusername.github.io/yourrepository/`
 
@@ -42,7 +42,7 @@ npm run build:github
 
 **GitHub Actions Configuration:**
 - Located in `.github/workflows/nextjs.yml`
-- Automatic deployment on push to main branch
+- Automatic deployment on push to master branch
 - Static export optimized for GitHub Pages
 
 ### Vercel (Alternative)
