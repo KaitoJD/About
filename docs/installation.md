@@ -54,8 +54,8 @@ npm run dev
 
 The project includes:
 - TypeScript configuration (`tsconfig.json`)
-- ESLint configuration (`.eslintrc.js`)
-- Tailwind CSS configuration (`tailwind.config.ts`)
+- ESLint configuration (`eslint.config.mjs`)
+- PostCSS configuration with Tailwind (`postcss.config.mjs`)
 - Next.js configuration (`next.config.ts`)
 
 ## Troubleshooting

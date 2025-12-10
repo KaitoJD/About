@@ -62,18 +62,21 @@ const technologies = [
 
 ### Colors & Theme
 
-Edit `tailwind.config.ts`:
+Edit `src/app/globals.css`:
 
-```typescript
-module.exports = {
-  theme: {
-    extend: {
-      colors: {
-        primary: "#your-primary-color",
-        secondary: "#your-secondary-color",
-        accent: "#your-accent-color"
-      }
-    }
+```css
+:root {
+  --background: #ffffff;
+  --foreground: #171717;
+  --primary: #10b981;
+  --secondary: #059669;
+  --accent: #34d399;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0f0f23;
+    --foreground: #e2e8f0;
   }
 }
 ```

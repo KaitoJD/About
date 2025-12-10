@@ -29,7 +29,7 @@ About/
 ├── 📂 out/                         # Static export output (GitHub Pages)
 ├── next.config.ts                  # Next.js configuration
 ├── package.json                    # Dependencies & scripts
-├── tailwind.config.ts              # Tailwind CSS customization
+├── postcss.config.mjs              # PostCSS & Tailwind CSS configuration
 ├── tsconfig.json                   # TypeScript configuration
 └── README.md                       # Main documentation
 ```
@@ -37,7 +37,7 @@ About/
 ## Tech Stack Details
 
 ### Core Framework
-- **Next.js 15.3.4**: React framework with App Router
+- **Next.js 15.4.8**: React framework with App Router
 - **React 19.0.0**: Latest React with concurrent features
 - **TypeScript 5+**: Static type checking with strict mode
 
@@ -48,7 +48,7 @@ About/
 
 ### Development Tools
 - **Turbopack**: Ultra-fast bundler for development
-- **ESLint 9**: Code linting with Next.js rules
+- **ESLint 9**: Code linting with Next.js rules (`eslint.config.mjs`)
 - **cross-env**: Cross-platform environment variables
 
 ## Key Components Deep Dive
@@ -162,11 +162,11 @@ const nextConfig: NextConfig = {
 - **Next.js Plugin**: Integrated TypeScript support
 - **Modern Target**: ES2017 for optimal browser support
 
-### Tailwind Configuration (`tailwind.config.ts`)
-- **Custom Animations**: Extended animation utilities
-- **Color Palette**: Consistent design system colors
-- **Responsive Design**: Mobile-first breakpoints
-- **Plugin Integration**: Additional Tailwind plugins
+### PostCSS Configuration (`postcss.config.mjs`)
+- **Tailwind CSS Plugin**: Configured via `@tailwindcss/postcss`
+- **Custom Styles**: Defined in `src/app/globals.css` using `@layer` directives
+- **Responsive Design**: Mobile-first utilities
+- **Color Palette**: Defined in CSS custom properties
 
 ## Deployment Architecture
 
@@ -176,7 +176,7 @@ name: Deploy Next.js site to Pages
 
 on:
   push:
-    branches: ["main", "master"]
+    branches: ["master"]
 
 jobs:
   build:
