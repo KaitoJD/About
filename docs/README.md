@@ -1,44 +1,24 @@
-# Documentation Index
+# Documentation
 
-Welcome to the comprehensive documentation for the Portfolio project. Below you'll find organized guides for different aspects of the project.
+- [Installation](installation.md) — Setup and development
+- [Deployment](deployment.md) — Building and deploying
+- [Customization](customization.md) — Making it your own
+- [Architecture](architecture.md) — Project structure
 
-## Documentation Structure
+## Quick Start
 
-| Document | Description | Target Audience |
-|----------|-------------|-----------------|
-| **[README.md](../README.md)** | Main project overview and quick start | Everyone |
-| **[Installation Guide](installation.md)** | Setup, dependencies, and development | Developers |
-| **[Deployment Guide](deployment.md)** | Building and deployment options | DevOps/Developers |
-| **[Customization Guide](customization.md)** | Content updates, styling, configuration | Users/Developers |
-| **[Architecture Guide](architecture.md)** | Technical details and project structure | Advanced Developers |
-
-## Getting Started Workflow
-
-**New to the project?** Follow this workflow:
-
-1. **Start Here**: [README.md](../README.md) - Overview and quick start
-2. **Set Up**: [Installation Guide](installation.md) - Get the project running locally
-3. **Deploy**: [Deployment Guide](deployment.md) - Learn about build and deployment options
-4. **Customize**: [Customization Guide](customization.md) - Make it your own
-5. **Deep Dive**: [Architecture Guide](architecture.md) - Understand the technical implementation
-
-## Quick Reference
-
-### Common Tasks
-- **First time setup**: [Installation Guide → Getting Started](installation.md#installation--development)
-- **Update content**: [Customization Guide → Content Updates](customization.md#content-updates)
-- **Deploy to GitHub Pages**: [Deployment Guide → GitHub Pages](deployment.md#github-pages-current)
-- **Change styling**: [Customization Guide → Styling](customization.md#styling-customization)
-- **Understanding structure**: [Architecture Guide → Project Structure](architecture.md#project-structure)
-
-### Development Commands
 ```bash
-npm run dev        # Start development server
-npm run build      # Production build
-npm run build:github # GitHub Pages build
-npm run lint       # Code linting
+git clone https://github.com/KaitoJD/About.git
+cd About
+npm install
+npm run dev
 ```
 
-## Need Help?
+## Commands
 
-- **Issues**: [GitHub Issues](https://github.com/KaitoJD/About/issues)
+```bash
+npm run dev          # Development server
+npm run build        # Production build
+npm run build:github # GitHub Pages build
+npm run lint         # Linting
+```
