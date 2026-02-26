@@ -1,78 +1,33 @@
-# Build & Deployment Guide
+# Deployment
 
-## Building the Project
+## GitHub Pages (Default)
 
-### Local Development Build
+Push to `master` — GitHub Actions builds and deploys automatically.
 
-```bash
-npm run dev
-# Starts development server on http://localhost:3000
-```
+The workflow is in `.github/workflows/nextjs.yml`.
 
-### Production Build
-
-```bash
-npm run build
-# Output: .next/ directory
-# Creates optimized production build
-```
-
-### GitHub Pages Build
+### Manual Deploy
 
 ```bash
 npm run build:github
-# Output: out/ directory (static files)
-# Builds static export for GitHub Pages
+# Upload the 'out/' directory to your hosting
 ```
 
-## Deployment Options
+## Alternatives
 
-### GitHub Pages (Current)
-
-**Automatic Deployment:**
-1. Push changes to `master` branch
-2. GitHub Actions workflow automatically triggers
-3. Site deploys to `https://yourusername.github.io/yourrepository/`
-
-**Manual Deployment:**
+**Vercel:**
 ```bash
-npm run build:github
-# Upload contents of 'out/' directory to GitHub Pages
+npm i -g vercel && vercel --prod
 ```
 
-**GitHub Actions Configuration:**
-- Located in `.github/workflows/nextjs.yml`
-- Automatic deployment on push to master branch
-- Static export optimized for GitHub Pages
+**Netlify:** Run `npm run build:github`, then upload `out/` to Netlify.
 
-### Vercel (Alternative)
+**Any static host:** Upload the `out/` directory.
 
-```bash
-# Install Vercel CLI
-npm i -g vercel
+## Configuration
 
-# Deploy to Vercel
-vercel --prod
-```
+GitHub Pages settings are in `next.config.ts`:
 
-### Netlify (Alternative)
-
-1. Build the project: `npm run build:github`
-2. Drag & drop the `out/` folder to Netlify
-3. Or connect GitHub repository for automatic deploys
-
-### Static Hosting (Any Server)
-
-```bash
-npm run build:github
-# Upload contents of 'out/' directory to any web server
-```
-
-## GitHub Pages Configuration
-
-The project is configured specifically for GitHub Pages deployment:
-
-**next.config.ts:**
 ```typescript
 const isGithubPages = process.env.GITHUB_PAGES === 'true';
 
@@ -85,44 +40,4 @@ const nextConfig = {
 };
 ```
 
-**Key GitHub Pages Features:**
-- Static export (`output: 'export'`)
-- Image optimization disabled for static hosting
-- Proper asset paths with basePath
-- `.nojekyll` file to prevent Jekyll processing
-
-## Build Output
-
-### Development Build
-- **Location**: `.next/` directory
-- **Purpose**: Development server files
-- **Features**: Hot reloading, source maps, debug info
-
-### Production Build
-- **Location**: `.next/` directory
-- **Purpose**: Optimized production files
-- **Features**: Minification, tree shaking, optimization
-
-### Static Export
-- **Location**: `out/` directory
-- **Purpose**: Static files for hosting
-- **Features**: No server required, CDN-friendly
-
-## Environment Variables
-
-```bash
-# GitHub Pages build
-GITHUB_PAGES=true npm run build:github
-
-# Regular production build
-npm run build
-```
-
-## Performance Optimization
-
-The build process includes:
-- **Code Splitting**: Automatic component-level splitting
-- **Tree Shaking**: Removes unused code
-- **Minification**: Reduces bundle size
-- **Image Optimization**: Responsive images (disabled for static export)
-- **CSS Optimization**: Removes unused CSS classes
+Update `basePath` and `assetPrefix` if your repository name differs.
