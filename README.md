@@ -1,12 +1,6 @@
 # About Me - Nguyen Sy Nguyen
 
-[![Next.js](https://img.shields.io/badge/Next.js-15.4.8-black?style=for-the-badge&logo=next.js&logoColor=white)](https://nextjs.org/)
-[![React](https://img.shields.io/badge/React-19.0.0-61DAFB?style=for-the-badge&logo=react&logoColor=white)](https://reactjs.org/)
-[![TypeScript](https://img.shields.io/badge/TypeScript-5.0+-3178C6?style=for-the-badge&logo=typescript&logoColor=white)](https://typescriptlang.org/)
-[![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-4.0+-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white)](https://tailwindcss.com/)
-[![GitHub Pages](https://img.shields.io/badge/GitHub_Pages-Deployed-brightgreen?style=for-the-badge&logo=github&logoColor=white)](https://pages.github.com/)
-
-> A modern, interactive portfolio website showcasing my journey as a Software Engineering student at FPT University. Built with cutting-edge technologies and featuring smooth animations, responsive design, and comprehensive accessibility support.
+> An interactive website showcasing my journey as a Software Engineering student at FPT University.
 
 ## Live Demo
 
@@ -27,19 +21,6 @@
 - **Styling**: Tailwind CSS 4.0+ with custom animations
 - **Deployment**: GitHub Actions + GitHub Pages
 - **Icons**: React Icons 5.5.0
-
-## Quick Start
-
-```bash
-# Clone and install
-git clone https://github.com/KaitoJD/About.git
-cd About
-npm install
-
-# Start development server
-npm run dev
-# Open http://localhost:3000
-```
 
 ## Documentation
 
