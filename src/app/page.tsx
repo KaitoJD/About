@@ -702,10 +702,6 @@ export default function Home() {
                   <span className="w-2 h-2 bg-blue-600 rounded-full mr-2"></span>
                   Front-end Developer
                 </span>
-                <span className="bg-purple-100 dark:bg-purple-900 text-purple-800 dark:text-purple-200 px-3 sm:px-4 py-2 rounded-full text-xs sm:text-sm font-medium flex items-center">
-                  <span className="w-2 h-2 bg-purple-600 rounded-full mr-2"></span>
-                  Community Leader
-                </span>
                 <span className="bg-orange-100 dark:bg-orange-900 text-orange-800 dark:text-orange-200 px-3 sm:px-4 py-2 rounded-full text-xs sm:text-sm font-medium flex items-center">
                   <span className="w-2 h-2 bg-orange-600 rounded-full mr-2"></span>
                   Physics Enthusiast
@@ -744,7 +740,7 @@ export default function Home() {
                   </div>
                   <div className="flex items-center text-sm text-slate-600 dark:text-slate-300">
                     <span className="w-2 h-2 bg-blue-500 rounded-full mr-3"></span>
-                    Game Design & Development with Unity
+                    Basic Kotlin Programming & Minecraft Modding
                   </div>
                   <div className="flex items-center text-sm text-slate-600 dark:text-slate-300">
                     <span className="w-2 h-2 bg-emerald-500 rounded-full mr-3"></span>
@@ -764,7 +760,6 @@ export default function Home() {
                 <div className="space-y-2 text-sm text-slate-600 dark:text-slate-300">
                   <p>🏆 Won multiple provincial physics competitions</p>
                   <p>♟️ Chess enthusiast with tournament wins</p>
-                  <p>🌟 Discord community administrator at FCoder</p>
                   <p>💡 All my projects stem from my own real-life needs</p>
                 </div>
               </div>
