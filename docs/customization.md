@@ -2,29 +2,49 @@
 
 ## Personal Info
 
-Edit `src/app/page.tsx`:
+Edit `src/data/personal.ts`:
 
 ```typescript
-const fullText = "Your Name Here";
-const descriptionText = "Your description here...";
-const discordUsername = "your_discord_username";
-const emailAddress = "your.email@domain.com";
+export const fullText = "Your Name Here";
+export const descriptionText = "Your description here...";
+export const highlightedName = "Your Name Here";
+export const highlightedPhrase = "your highlighted phrase";
+export const discordUsername = "your_discord_username";
+export const emailAddress = "your.email@domain.com";
 ```
 
 ## Tech Stack
 
-Edit `src/components/TechStackDynamic.tsx` to add/remove technologies:
+Edit `src/data/techStack.ts` to add/remove technologies:
 
 ```typescript
-const technologies = [
-  { name: "React", icon: FaReact, category: "frontend", color: "text-blue-500" },
-  // Categories: "frontend", "backend", "database", "tools", "mobile"
+export const techStack: TechItem[] = [
+  { name: "React", icon: FaReact, color: "#61DAFB", category: "Frontend" },
+  // Categories: "Language", "Frontend", "Backend", "Tools"
 ];
+
+export const techCategories = ['All', 'Language', 'Frontend', 'Backend', 'Tools'];
 ```
+
+## Skills & Traits
+
+Edit `src/data/skills.ts` to update skill ratings, personal traits, currently-learning items, and fun facts.
+
+## Timeline
+
+Edit `src/data/timeline.ts` to add/remove/reorder timeline entries.
+
+## Contact Cards
+
+Edit `src/data/contacts.ts` to update professional and personal contact information.
+
+## Navigation
+
+Edit `src/data/navigation.ts` to add or rename navigation items.
 
 ## Colors & Theme
 
-Edit CSS variables in `src/app/globals.css`:
+Edit CSS variables in `src/styles/base.css`:
 
 ```css
 :root {
