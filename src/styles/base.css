@@ -1,0 +1,70 @@
+:root {
+  --background: #ffffff;
+  --foreground: #171717;
+  --primary: #10b981;
+  --secondary: #059669;
+  --accent: #34d399;
+}
+
+:root {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-jetbrains-mono);
+  --font-mono: var(--font-source-code-pro);
+}
+
+.font-mono {
+  font-family: var(--font-source-code-pro), 'Courier New', monospace;
+}
+
+.font-sans {
+  font-family: var(--font-jetbrains-mono), 'Courier New', monospace;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0f0f23;
+    --foreground: #e2e8f0;
+  }
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-jetbrains-mono), 'Courier New', monospace;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+section {
+  scroll-margin-top: 80px;
+}
+
+html, body, * {
+  /* Fallback for older browsers provided via ::-webkit-scrollbar below */
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+html, body {
+  overflow-x: hidden;
+}
+
+::-webkit-scrollbar,
+html::-webkit-scrollbar,
+body::-webkit-scrollbar,
+*::-webkit-scrollbar {
+  width: 0px;
+  background: transparent;
+  display: none;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: transparent;
+}

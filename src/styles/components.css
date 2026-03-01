@@ -1,0 +1,60 @@
+.hero-title {
+  letter-spacing: -0.02em;
+}
+
+.button-hover-effect {
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.button-hover-effect:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3);
+}
+
+.nav-link {
+  position: relative;
+}
+
+.nav-link::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  width: 0;
+  height: 2px;
+  background: var(--primary);
+  transition: width 0.3s ease, left 0.3s ease;
+}
+
+.nav-link:hover::after {
+  width: 100%;
+  left: 0;
+}
+
+.mobile-menu-button {
+  -webkit-tap-highlight-color: transparent;
+}
+
+.mobile-menu {
+  transform-origin: top right;
+}
+
+.tech-scroll-container {
+  /* Fallback for older browsers provided via ::-webkit-scrollbar below */
+  scrollbar-width: thin;
+  scrollbar-color: var(--primary) transparent;
+}
+
+.tech-scroll-container::-webkit-scrollbar {
+  width: 4px;
+  display: block;
+}
+
+.tech-scroll-container::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.tech-scroll-container::-webkit-scrollbar-thumb {
+  background: var(--primary);
+  border-radius: 2px;
+}
